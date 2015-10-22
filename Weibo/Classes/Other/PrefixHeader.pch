@@ -1,0 +1,19 @@
+//
+//  PrefixHeader.pch
+//  Weibo
+//
+//  Created by 宿莽 on 15/10/15.
+//  Copyright (c) 2015年 宿莽. All rights reserved.
+//
+#import<Availability.h>
+#ifndef Weibo_PrefixHeader_pch
+#define Weibo_PrefixHeader_pch
+#endif
+
+#ifdef __OBJC__
+#import<UIKit/UIKit.h>
+#import<Foundation/Foundation.h>
+#import "UIImage+BD.h"
+
+#define iOS8 ([[UIDevice currentDevice].systemVersion doubleValue]>=8.0)
+#endif
