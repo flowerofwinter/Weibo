@@ -45,6 +45,8 @@
     //1创建按钮
     TabBarButton *btn = [[TabBarButton alloc]init];
     [self addSubview:btn];
+    //添加按钮到数组中
+    [self.tabBarBtns addObject:btn];
     //2设置数据
     btn.item = item;
 /*
@@ -56,11 +58,9 @@
     //3监听按钮反应
     [btn addTarget:self action:@selector(btnClick:) forControlEvents:UIControlEventTouchDown];
     //4默认选中第0个按钮
-    if (self.subviews.count == 1) {
+    if (self.tabBarBtns.count == 1) {
         [self btnClick:btn];
     }
-    //5添加按钮到数组中
-    [self.tabBarBtns addObject:btn];
 }
 
 -(void)layoutSubviews{

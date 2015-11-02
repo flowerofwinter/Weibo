@@ -13,6 +13,7 @@
 #import "MeTableViewController.h"
 #import "UIImage+BD.h"
 #import "TabBar.h"
+#import "BDNVController.h"
 @interface TabBarViewController ()<TabBarDelegate>
 @property(nonatomic,weak)TabBar *customTabbar;
 @end
@@ -91,7 +92,7 @@
     childVc.tabBarItem.selectedImage = [[UIImage imageWithName:selectedImageName]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     childVc.tabBarItem.image = [UIImage imageWithName:imageName];
     //包装一个导航控制器
-    UINavigationController *childNav = [[UINavigationController alloc]initWithRootViewController:childVc];
+    BDNVController *childNav = [[BDNVController alloc]initWithRootViewController:childVc];
     [self addChildViewController:childNav];
     //3>添加tabbar内部的按钮
     [self.customTabbar addTabBarButtonWithItem:childVc.tabBarItem];

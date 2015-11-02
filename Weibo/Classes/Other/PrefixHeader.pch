@@ -16,4 +16,12 @@
 #import "UIImage+BD.h"
 
 #define iOS8 ([[UIDevice currentDevice].systemVersion doubleValue]>=8.0)
+
+//自定义log
+#ifdef DEBUG
+#define IWLog(...)NSLog(__VA_ARGS__)
+#else
+#define IWLog(...)
+#endif
+
 #endif

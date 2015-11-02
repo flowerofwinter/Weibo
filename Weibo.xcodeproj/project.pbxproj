@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5A03D0EE1BE701F900BA1946 /* UIBarButtonItem+BD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A03D0ED1BE701F900BA1946 /* UIBarButtonItem+BD.m */; };
+		5A03D0F11BE75D3C00BA1946 /* BDSearchBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A03D0F01BE75D3C00BA1946 /* BDSearchBar.m */; };
 		5A3E75741BCF146000D9369F /* DiscoverTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3E75551BCF146000D9369F /* DiscoverTableViewController.m */; };
 		5A3E75751BCF146000D9369F /* HomeTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3E755B1BCF146000D9369F /* HomeTableViewController.m */; };
 		5A3E75761BCF146000D9369F /* TabBarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A3E75611BCF146000D9369F /* TabBarViewController.m */; };
@@ -18,6 +20,7 @@
 		5A5426AD1BCE6A150014205B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A5426AC1BCE6A150014205B /* Images.xcassets */; };
 		5A5426BC1BCE6A160014205B /* WeiboTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5426BB1BCE6A160014205B /* WeiboTests.m */; };
 		5A5764FA1BCF76920063892B /* TabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764F91BCF76920063892B /* TabBarButton.m */; };
+		5A60332D1BD9C71D009502B0 /* BDNVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A60332C1BD9C71D009502B0 /* BDNVController.m */; };
 		5A8397E51BD098B50028874E /* BadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8397E41BD098B50028874E /* BadgeButton.m */; };
 		5AA138FF1BCF6C5200BA905A /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA138FE1BCF6C5200BA905A /* TabBar.m */; };
 /* End PBXBuildFile section */
@@ -33,6 +36,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		5A03D0EC1BE701F900BA1946 /* UIBarButtonItem+BD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+BD.h"; sourceTree = "<group>"; };
+		5A03D0ED1BE701F900BA1946 /* UIBarButtonItem+BD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+BD.m"; sourceTree = "<group>"; };
+		5A03D0EF1BE75D3C00BA1946 /* BDSearchBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDSearchBar.h; sourceTree = "<group>"; };
+		5A03D0F01BE75D3C00BA1946 /* BDSearchBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDSearchBar.m; sourceTree = "<group>"; };
 		5A3E75541BCF146000D9369F /* DiscoverTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DiscoverTableViewController.h; sourceTree = "<group>"; };
 		5A3E75551BCF146000D9369F /* DiscoverTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DiscoverTableViewController.m; sourceTree = "<group>"; };
 		5A3E755A1BCF146000D9369F /* HomeTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeTableViewController.h; sourceTree = "<group>"; };
@@ -57,6 +64,8 @@
 		5A5426BB1BCE6A160014205B /* WeiboTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiboTests.m; sourceTree = "<group>"; };
 		5A5764F81BCF76920063892B /* TabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarButton.h; sourceTree = "<group>"; };
 		5A5764F91BCF76920063892B /* TabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarButton.m; sourceTree = "<group>"; };
+		5A60332B1BD9C71D009502B0 /* BDNVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDNVController.h; sourceTree = "<group>"; };
+		5A60332C1BD9C71D009502B0 /* BDNVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDNVController.m; sourceTree = "<group>"; };
 		5A8397E31BD098B50028874E /* BadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeButton.h; sourceTree = "<group>"; };
 		5A8397E41BD098B50028874E /* BadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeButton.m; sourceTree = "<group>"; };
 		5AA138FD1BCF6C5200BA905A /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBar.h; sourceTree = "<group>"; };
@@ -123,6 +132,8 @@
 		5A3E75571BCF146000D9369F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5A03D0EF1BE75D3C00BA1946 /* BDSearchBar.h */,
+				5A03D0F01BE75D3C00BA1946 /* BDSearchBar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -175,6 +186,8 @@
 			children = (
 				5A3E75601BCF146000D9369F /* TabBarViewController.h */,
 				5A3E75611BCF146000D9369F /* TabBarViewController.m */,
+				5A60332B1BD9C71D009502B0 /* BDNVController.h */,
+				5A60332C1BD9C71D009502B0 /* BDNVController.m */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -282,6 +295,8 @@
 			children = (
 				5A3E75811BCF32E600D9369F /* UIImage+BD.h */,
 				5A3E75821BCF32E600D9369F /* UIImage+BD.m */,
+				5A03D0EC1BE701F900BA1946 /* UIBarButtonItem+BD.h */,
+				5A03D0ED1BE701F900BA1946 /* UIBarButtonItem+BD.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -442,12 +457,15 @@
 				5A3E75751BCF146000D9369F /* HomeTableViewController.m in Sources */,
 				5A3E75831BCF32E600D9369F /* UIImage+BD.m in Sources */,
 				5A3E75781BCF146000D9369F /* MessageTableViewController.m in Sources */,
+				5A03D0F11BE75D3C00BA1946 /* BDSearchBar.m in Sources */,
 				5A3E75791BCF146000D9369F /* AppDelegate.m in Sources */,
 				5A3E75761BCF146000D9369F /* TabBarViewController.m in Sources */,
 				5A3E75741BCF146000D9369F /* DiscoverTableViewController.m in Sources */,
 				5A5764FA1BCF76920063892B /* TabBarButton.m in Sources */,
+				5A60332D1BD9C71D009502B0 /* BDNVController.m in Sources */,
 				5A3E757A1BCF146000D9369F /* main.m in Sources */,
 				5A3E75771BCF146000D9369F /* MeTableViewController.m in Sources */,
+				5A03D0EE1BE701F900BA1946 /* UIBarButtonItem+BD.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
