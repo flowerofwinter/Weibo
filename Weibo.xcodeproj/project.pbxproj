@@ -23,6 +23,9 @@
 		5A60332D1BD9C71D009502B0 /* BDNVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A60332C1BD9C71D009502B0 /* BDNVController.m */; };
 		5A8397E51BD098B50028874E /* BadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8397E41BD098B50028874E /* BadgeButton.m */; };
 		5AA138FF1BCF6C5200BA905A /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA138FE1BCF6C5200BA905A /* TabBar.m */; };
+		5AC782411BE82B9C002B31C6 /* TitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC782401BE82B9C002B31C6 /* TitleButton.m */; };
+		5AC782481BE86241002B31C6 /* NewFeatureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC782471BE86241002B31C6 /* NewFeatureVC.m */; };
+		5AC7824B1BE88F55002B31C6 /* BDPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7824A1BE88F55002B31C6 /* BDPageControl.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +73,12 @@
 		5A8397E41BD098B50028874E /* BadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeButton.m; sourceTree = "<group>"; };
 		5AA138FD1BCF6C5200BA905A /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBar.h; sourceTree = "<group>"; };
 		5AA138FE1BCF6C5200BA905A /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBar.m; sourceTree = "<group>"; };
+		5AC7823F1BE82B9C002B31C6 /* TitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleButton.h; sourceTree = "<group>"; };
+		5AC782401BE82B9C002B31C6 /* TitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleButton.m; sourceTree = "<group>"; };
+		5AC782461BE86241002B31C6 /* NewFeatureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeatureVC.h; sourceTree = "<group>"; };
+		5AC782471BE86241002B31C6 /* NewFeatureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewFeatureVC.m; sourceTree = "<group>"; };
+		5AC782491BE88F55002B31C6 /* BDPageControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDPageControl.h; sourceTree = "<group>"; };
+		5AC7824A1BE88F55002B31C6 /* BDPageControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDPageControl.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,6 +102,7 @@
 		5A3E75511BCF146000D9369F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5AC782421BE861AC002B31C6 /* NewVersionFeature */,
 				5A3E75521BCF146000D9369F /* Discover */,
 				5A3E75581BCF146000D9369F /* Home */,
 				5A3E755E1BCF146000D9369F /* Main */,
@@ -167,6 +177,8 @@
 		5A3E755D1BCF146000D9369F /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5AC7823F1BE82B9C002B31C6 /* TitleButton.h */,
+				5AC782401BE82B9C002B31C6 /* TitleButton.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -354,6 +366,42 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5AC782421BE861AC002B31C6 /* NewVersionFeature */ = {
+			isa = PBXGroup;
+			children = (
+				5AC782431BE86219002B31C6 /* Cotroller */,
+				5AC782441BE86219002B31C6 /* Model */,
+				5AC782451BE86219002B31C6 /* View */,
+			);
+			name = NewVersionFeature;
+			path = Discover/NewVersionFeature;
+			sourceTree = "<group>";
+		};
+		5AC782431BE86219002B31C6 /* Cotroller */ = {
+			isa = PBXGroup;
+			children = (
+				5AC782461BE86241002B31C6 /* NewFeatureVC.h */,
+				5AC782471BE86241002B31C6 /* NewFeatureVC.m */,
+			);
+			path = Cotroller;
+			sourceTree = "<group>";
+		};
+		5AC782441BE86219002B31C6 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		5AC782451BE86219002B31C6 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				5AC782491BE88F55002B31C6 /* BDPageControl.h */,
+				5AC7824A1BE88F55002B31C6 /* BDPageControl.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -455,10 +503,13 @@
 				5AA138FF1BCF6C5200BA905A /* TabBar.m in Sources */,
 				5A8397E51BD098B50028874E /* BadgeButton.m in Sources */,
 				5A3E75751BCF146000D9369F /* HomeTableViewController.m in Sources */,
+				5AC782411BE82B9C002B31C6 /* TitleButton.m in Sources */,
 				5A3E75831BCF32E600D9369F /* UIImage+BD.m in Sources */,
 				5A3E75781BCF146000D9369F /* MessageTableViewController.m in Sources */,
 				5A03D0F11BE75D3C00BA1946 /* BDSearchBar.m in Sources */,
+				5AC7824B1BE88F55002B31C6 /* BDPageControl.m in Sources */,
 				5A3E75791BCF146000D9369F /* AppDelegate.m in Sources */,
+				5AC782481BE86241002B31C6 /* NewFeatureVC.m in Sources */,
 				5A3E75761BCF146000D9369F /* TabBarViewController.m in Sources */,
 				5A3E75741BCF146000D9369F /* DiscoverTableViewController.m in Sources */,
 				5A5764FA1BCF76920063892B /* TabBarButton.m in Sources */,

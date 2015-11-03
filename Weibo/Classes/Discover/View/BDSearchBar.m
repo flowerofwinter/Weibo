@@ -28,10 +28,12 @@
         self.leftViewMode = UITextFieldViewModeAlways;
         //字体
         self.font = [UIFont systemFontOfSize:13];
-        //设置提醒文字
-        self.placeholder = @"搜索";
+        
         //右边的清除按钮
         self.clearButtonMode = UITextFieldViewModeAlways;
+        //设置键盘右下角的按键样式
+        self.returnKeyType = UIReturnKeySearch;
+        self.enablesReturnKeyAutomatically = YES;
     }
     return self;
 }
@@ -40,7 +42,8 @@
     [super layoutSubviews];
     //设置左边图标的位置
     self.leftView.frame = CGRectMake(0, 0, 30, self.frame.size.height);
-    
+    //设置提醒文字
+    self.placeholder = @"搜索";   //设置在init里面会因为加载时间的先后导致placeholder与leftview重叠
 }
 
 @end

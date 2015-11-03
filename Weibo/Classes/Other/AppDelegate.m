@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "TabBarViewController.h"
-
+#import "NewFeatureVC.h"
 @interface AppDelegate ()
 
 @end
@@ -20,7 +20,7 @@
     // Override point for customization after application launch.
     application.statusBarHidden = NO;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [TabBarViewController alloc];
+    self.window.rootViewController = [NewFeatureVC alloc];
     //self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
