@@ -38,6 +38,7 @@
 		5AD7490E1C181EBE009EDB43 /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD749031C181EBE009EDB43 /* AFURLRequestSerialization.m */; settings = {ASSET_TAGS = (); }; };
 		5AD7490F1C181EBE009EDB43 /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD749051C181EBE009EDB43 /* AFURLResponseSerialization.m */; settings = {ASSET_TAGS = (); }; };
 		5AD749101C181EBE009EDB43 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD749071C181EBE009EDB43 /* AFURLSessionManager.m */; settings = {ASSET_TAGS = (); }; };
+		5AD749131C1837FE009EDB43 /* WeiboTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD749121C1837FE009EDB43 /* WeiboTool.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,8 @@
 		5AD749051C181EBE009EDB43 /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		5AD749061C181EBE009EDB43 /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
 		5AD749071C181EBE009EDB43 /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		5AD749111C1837FE009EDB43 /* WeiboTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboTool.h; sourceTree = "<group>"; };
+		5AD749121C1837FE009EDB43 /* WeiboTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -337,6 +340,8 @@
 				5A3E75711BCF146000D9369F /* AppDelegate.h */,
 				5A3E75721BCF146000D9369F /* AppDelegate.m */,
 				5A3E75731BCF146000D9369F /* main.m */,
+				5AD749111C1837FE009EDB43 /* WeiboTool.h */,
+				5AD749121C1837FE009EDB43 /* WeiboTool.m */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -618,6 +623,7 @@
 				5AD749101C181EBE009EDB43 /* AFURLSessionManager.m in Sources */,
 				5AD748EF1C181E2E009EDB43 /* Account.m in Sources */,
 				5AC782411BE82B9C002B31C6 /* TitleButton.m in Sources */,
+				5AD749131C1837FE009EDB43 /* WeiboTool.m in Sources */,
 				5A3E75831BCF32E600D9369F /* UIImage+BD.m in Sources */,
 				5AD7490C1C181EBE009EDB43 /* AFSecurityPolicy.m in Sources */,
 				5AD749081C181EBE009EDB43 /* AFHTTPRequestOperation.m in Sources */,

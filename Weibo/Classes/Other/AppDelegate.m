@@ -10,6 +10,9 @@
 #import "TabBarViewController.h"
 #import "NewFeatureVC.h"
 #import "OAuthViewController.h"
+#import "AccountTool.h"
+#import "Account.h"
+#import "WeiboTool.h"
 @interface AppDelegate ()
 
 @end
@@ -21,9 +24,17 @@
     // Override point for customization after application launch.
     application.statusBarHidden = NO;
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.window.rootViewController = [[OAuthViewController alloc]init];
-    //self.window.backgroundColor = [UIColor whiteColor];
+    
     [self.window makeKeyAndVisible];
+    
+    Account *account = [AccountTool Account];
+    if (account) {
+        [WeiboTool chooseRootController];
+    }else{
+        self.window.rootViewController = [[OAuthViewController alloc]init];
+    }
+    //self.window.backgroundColor = [UIColor whiteColor];
+    
     return YES;
 }
 

@@ -10,6 +10,7 @@
 #import "AFNetworking.h"
 #import "Account.h"
 #import "AccountTool.h"
+#import "WeiboTool.h"
 @interface OAuthViewController ()<UIWebViewDelegate>
 
 @end
@@ -60,6 +61,7 @@
         NSLog(@"%@",responseObject);
         Account *account = [Account accountWithDict:responseObject];
         [AccountTool saveAccount:account];
+        [WeiboTool chooseRootController];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"请求失败%@",error);
     }];
