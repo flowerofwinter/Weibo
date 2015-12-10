@@ -9,17 +9,27 @@
 #import "HomeTableViewController.h"
 #import "UIBarButtonItem+BD.h"
 #import "TitleButton.h"
-
+#import "Account.h"
+#import "AccountTool.h"
+#import "AFNetworking.h"
+#import "UIImageView+WebCache.h"
 #define tBtnDowntag 0
 #define tBtnUptag -1
 @interface HomeTableViewController ()
-
+@property(nonatomic,strong)NSArray *statuses;
 @end
 
 @implementation HomeTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    //设置导航栏
+    [self setupNavBar];
+    //加载微博数据
+    [self setupStatusData];
+}
+
+-(void)setupNavBar{
     UIButton *btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
     btn.center = CGPointMake(100, 100);
     [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -41,6 +51,23 @@
     [tbtn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
     tbtn.tag = tBtnDowntag;
     self.navigationItem.titleView = tbtn;
+}
+
+-(void)setupStatusData{
+    //创建请求管理对象
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    //封装请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = [AccountTool Account].access_token;
+    //params[@"count"] = @2;
+    //发送请求
+    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSLog(@"%@",responseObject);
+        self.statuses = responseObject[@"statuses"];
+        [self.tableView reloadData];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 -(void)titleClick:(TitleButton *)button{
@@ -66,7 +93,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.statuses.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -77,7 +104,16 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
     //2设置cell的数据
-    cell.textLabel.text = @"哈哈哈";
+    NSDictionary *status = self.statuses[indexPath.row];
+    cell.textLabel.text = status[@"text"];
+    
+    //微博作者的昵称
+    NSDictionary *user = status[@"user"];
+    cell.detailTextLabel.text = user[@"name"];
+    
+    //微博作者的头像
+    NSString *iconuser = user[@"profile_image_url"];
+    [cell.imageView setImageWithURL:[NSURL URLWithString:iconuser] placeholderImage:[UIImage imageWithName:@"icon.png"]];
     return cell;
 }
 
