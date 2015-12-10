@@ -11,6 +11,7 @@
 #import "Account.h"
 #import "AccountTool.h"
 #import "WeiboTool.h"
+#import "MBProgressHUD+MJ.h"
 @interface OAuthViewController ()<UIWebViewDelegate>
 
 @end
@@ -30,6 +31,18 @@
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webview loadRequest:request];
     //3、设置根控制器为webview
+}
+
+-(void)webViewDidStartLoad:(UIWebView *)webView{
+    [MBProgressHUD showMessage:@"正在加载……"];
+}
+
+-(void)webViewDidFinishLoad:(UIWebView *)webView{
+    [MBProgressHUD hideHUD];
+}
+
+-(void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
+    [MBProgressHUD hideHUD];
 }
 
 -(BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
@@ -62,8 +75,10 @@
         Account *account = [Account accountWithDict:responseObject];
         [AccountTool saveAccount:account];
         [WeiboTool chooseRootController];
+        [MBProgressHUD hideHUD];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"请求失败%@",error);
+        [MBProgressHUD hideHUD];
     }];
 }
 @end

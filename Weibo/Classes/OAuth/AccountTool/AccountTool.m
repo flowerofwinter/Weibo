@@ -7,7 +7,7 @@
 //
 
 #import "AccountTool.h"
-#define AccountFile [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject]stringByAppendingPathComponent:@"Account.data"]
+#define AccountFile [[NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)lastObject]stringByAppendingPathComponent:@"account.data"]
 @implementation AccountTool
 
 +(Account *)Account{

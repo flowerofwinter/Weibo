@@ -21,6 +21,9 @@
 		5A5426BC1BCE6A160014205B /* WeiboTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5426BB1BCE6A160014205B /* WeiboTests.m */; };
 		5A5764FA1BCF76920063892B /* TabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764F91BCF76920063892B /* TabBarButton.m */; };
 		5A60332D1BD9C71D009502B0 /* BDNVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A60332C1BD9C71D009502B0 /* BDNVController.m */; };
+		5A7D41011C190F9B00F2D52A /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7D40FD1C190F9B00F2D52A /* MBProgressHUD+MJ.m */; settings = {ASSET_TAGS = (); }; };
+		5A7D41021C190F9B00F2D52A /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5A7D40FE1C190F9B00F2D52A /* MBProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
+		5A7D41031C190F9B00F2D52A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7D41001C190F9B00F2D52A /* MBProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		5A8397E51BD098B50028874E /* BadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8397E41BD098B50028874E /* BadgeButton.m */; };
 		5AA138FF1BCF6C5200BA905A /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA138FE1BCF6C5200BA905A /* TabBar.m */; };
 		5AB08DB31C15130600A0D137 /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB08DB21C15130600A0D137 /* OAuthViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -82,6 +85,11 @@
 		5A5764F91BCF76920063892B /* TabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarButton.m; sourceTree = "<group>"; };
 		5A60332B1BD9C71D009502B0 /* BDNVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDNVController.h; sourceTree = "<group>"; };
 		5A60332C1BD9C71D009502B0 /* BDNVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDNVController.m; sourceTree = "<group>"; };
+		5A7D40FC1C190F9B00F2D52A /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
+		5A7D40FD1C190F9B00F2D52A /* MBProgressHUD+MJ.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MBProgressHUD+MJ.m"; sourceTree = "<group>"; };
+		5A7D40FE1C190F9B00F2D52A /* MBProgressHUD.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = MBProgressHUD.bundle; sourceTree = "<group>"; };
+		5A7D40FF1C190F9B00F2D52A /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		5A7D41001C190F9B00F2D52A /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		5A8397E31BD098B50028874E /* BadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeButton.h; sourceTree = "<group>"; };
 		5A8397E41BD098B50028874E /* BadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeButton.m; sourceTree = "<group>"; };
 		5AA138FD1BCF6C5200BA905A /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBar.h; sourceTree = "<group>"; };
@@ -410,6 +418,19 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		5A7D40FB1C190F9B00F2D52A /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				5A7D40FC1C190F9B00F2D52A /* MBProgressHUD+MJ.h */,
+				5A7D40FD1C190F9B00F2D52A /* MBProgressHUD+MJ.m */,
+				5A7D40FE1C190F9B00F2D52A /* MBProgressHUD.bundle */,
+				5A7D40FF1C190F9B00F2D52A /* MBProgressHUD.h */,
+				5A7D41001C190F9B00F2D52A /* MBProgressHUD.m */,
+			);
+			name = MBProgressHUD;
+			path = ../../../../../collection/MBProgressHUD;
+			sourceTree = "<group>";
+		};
 		5AB08DAF1C1512ED00A0D137 /* OAuth */ = {
 			isa = PBXGroup;
 			children = (
@@ -486,6 +507,7 @@
 		5AD748F31C181EBE009EDB43 /* Lib */ = {
 			isa = PBXGroup;
 			children = (
+				5A7D40FB1C190F9B00F2D52A /* MBProgressHUD */,
 				5AD748F41C181EBE009EDB43 /* AFNetworking */,
 			);
 			path = Lib;
@@ -598,6 +620,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A5426AD1BCE6A150014205B /* Images.xcassets in Resources */,
+				5A7D41021C190F9B00F2D52A /* MBProgressHUD.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -616,6 +639,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5AD7490E1C181EBE009EDB43 /* AFURLRequestSerialization.m in Sources */,
+				5A7D41011C190F9B00F2D52A /* MBProgressHUD+MJ.m in Sources */,
 				5AD7490D1C181EBE009EDB43 /* AFURLConnectionOperation.m in Sources */,
 				5AA138FF1BCF6C5200BA905A /* TabBar.m in Sources */,
 				5A8397E51BD098B50028874E /* BadgeButton.m in Sources */,
@@ -629,6 +653,7 @@
 				5AD749081C181EBE009EDB43 /* AFHTTPRequestOperation.m in Sources */,
 				5A3E75781BCF146000D9369F /* MessageTableViewController.m in Sources */,
 				5A03D0F11BE75D3C00BA1946 /* BDSearchBar.m in Sources */,
+				5A7D41031C190F9B00F2D52A /* MBProgressHUD.m in Sources */,
 				5AC7824B1BE88F55002B31C6 /* BDPageControl.m in Sources */,
 				5A3E75791BCF146000D9369F /* AppDelegate.m in Sources */,
 				5AC782481BE86241002B31C6 /* NewFeatureVC.m in Sources */,
