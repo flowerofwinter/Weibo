@@ -13,6 +13,9 @@
 #import "AccountTool.h"
 #import "AFNetworking.h"
 #import "UIImageView+WebCache.h"
+#import "Status.h"
+#import "WeiboUser.h"
+#import "MJExtension.h"
 #define tBtnDowntag 0
 #define tBtnUptag -1
 @interface HomeTableViewController ()
@@ -62,8 +65,14 @@
     //params[@"count"] = @2;
     //发送请求
     [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSLog(@"%@",responseObject);
-        self.statuses = responseObject[@"statuses"];
+        NSArray *dictArray = responseObject[@"statuses"];
+//        NSMutableArray *statusArray = [NSMutableArray array];
+//        for (NSDictionary *dict in dictArray) {
+//            Status *status = [Status objectWithKeyValues:dict];
+//            [statusArray addObject:status];
+//        }
+//        self.statuses = statusArray;
+        self.statuses = [Status objectArrayWithKeyValuesArray:dictArray];
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -104,15 +113,14 @@
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
     }
     //2设置cell的数据
-    NSDictionary *status = self.statuses[indexPath.row];
-    cell.textLabel.text = status[@"text"];
+    Status *status = self.statuses[indexPath.row];
+    cell.textLabel.text = status.text;
     
     //微博作者的昵称
-    NSDictionary *user = status[@"user"];
-    cell.detailTextLabel.text = user[@"name"];
+    cell.detailTextLabel.text = status.user.name;
     
     //微博作者的头像
-    NSString *iconuser = user[@"profile_image_url"];
+    NSString *iconuser = status.user.profile_image_url;
     [cell.imageView setImageWithURL:[NSURL URLWithString:iconuser] placeholderImage:[UIImage imageWithName:@"icon.png"]];
     return cell;
 }
