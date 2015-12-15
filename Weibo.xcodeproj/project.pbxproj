@@ -44,6 +44,7 @@
 		5A7D41031C190F9B00F2D52A /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7D41001C190F9B00F2D52A /* MBProgressHUD.m */; settings = {ASSET_TAGS = (); }; };
 		5A8397E51BD098B50028874E /* BadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8397E41BD098B50028874E /* BadgeButton.m */; };
 		5AA138FF1BCF6C5200BA905A /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA138FE1BCF6C5200BA905A /* TabBar.m */; };
+		5AAB3D611C1AD108007577AA /* StatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB3D601C1AD108007577AA /* StatusCell.m */; settings = {ASSET_TAGS = (); }; };
 		5AB08DB31C15130600A0D137 /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB08DB21C15130600A0D137 /* OAuthViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5AC782411BE82B9C002B31C6 /* TitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC782401BE82B9C002B31C6 /* TitleButton.m */; };
 		5AC782481BE86241002B31C6 /* NewFeatureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC782471BE86241002B31C6 /* NewFeatureVC.m */; };
@@ -158,6 +159,8 @@
 		5A8397E41BD098B50028874E /* BadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeButton.m; sourceTree = "<group>"; };
 		5AA138FD1BCF6C5200BA905A /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBar.h; sourceTree = "<group>"; };
 		5AA138FE1BCF6C5200BA905A /* TabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBar.m; sourceTree = "<group>"; };
+		5AAB3D5F1C1AD108007577AA /* StatusCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusCell.h; sourceTree = "<group>"; };
+		5AAB3D601C1AD108007577AA /* StatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusCell.m; sourceTree = "<group>"; };
 		5AB08DB11C15130600A0D137 /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthViewController.h; sourceTree = "<group>"; };
 		5AB08DB21C15130600A0D137 /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthViewController.m; sourceTree = "<group>"; };
 		5AC7823F1BE82B9C002B31C6 /* TitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleButton.h; sourceTree = "<group>"; };
@@ -315,6 +318,8 @@
 			children = (
 				5AC7823F1BE82B9C002B31C6 /* TitleButton.h */,
 				5AC782401BE82B9C002B31C6 /* TitleButton.m */,
+				5AAB3D5F1C1AD108007577AA /* StatusCell.h */,
+				5AAB3D601C1AD108007577AA /* StatusCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -745,6 +750,7 @@
 				TargetAttributes = {
 					5A54269B1BCE6A150014205B = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = JNDUS49AR4;
 					};
 					5A5426B41BCE6A150014205B = {
 						CreatedOnToolsVersion = 6.4;
@@ -806,6 +812,7 @@
 				5A75EA201C1959190058D425 /* UIImageView+WebCache.m in Sources */,
 				5A3E75751BCF146000D9369F /* HomeTableViewController.m in Sources */,
 				5AD749101C181EBE009EDB43 /* AFURLSessionManager.m in Sources */,
+				5AAB3D611C1AD108007577AA /* StatusCell.m in Sources */,
 				5AFD4CAB1C1A5C3B008C8CA6 /* MJMethod.m in Sources */,
 				5A75EA1B1C1959190058D425 /* UIButton+WebCache.m in Sources */,
 				5AD748EF1C181E2E009EDB43 /* Account.m in Sources */,
@@ -961,6 +968,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Weibo/Classes/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = Weibo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
@@ -974,6 +982,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Weibo/Classes/Other/PrefixHeader.pch";
 				INFOPLIST_FILE = Weibo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;

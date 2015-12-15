@@ -33,4 +33,12 @@
  *  微薄的作者
  */
 @property(nonatomic,strong)WeiboUser *user;
+/**
+ *  微博配图
+ */
+@property(nonatomic,copy)NSString *thumbnail_pic;
+/**
+ *  微博发出时间
+ */
+@property(nonatomic,copy)NSString *created_at;
 @end

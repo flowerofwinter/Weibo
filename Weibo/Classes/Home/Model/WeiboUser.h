@@ -21,4 +21,8 @@
  *  用户的头像
  */
 @property(nonatomic,copy)NSString *profile_image_url;
+/**
+ *  是否是vip
+ */
+@property(nonatomic,assign,getter = isVip)BOOL vip;
 @end
