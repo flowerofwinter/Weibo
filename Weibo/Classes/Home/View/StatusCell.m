@@ -252,194 +252,114 @@
     sourceLabel.font = [UIFont systemFontOfSize:12];
     
     [self.topView addSubview:sourceLabel];
-    
     self.sourceLable = sourceLabel;
     
     //8.正文内容
-    
     UILabel *contentLabel = [[UILabel alloc]init];
-    
     contentLabel.numberOfLines = 0; //换行
-    
     contentLabel.font = [UIFont systemFontOfSize:13];
-    
     [self.topView addSubview:contentLabel];
-    
     self.statusLable = contentLabel;
-    
 }
 
 /**
- 
  *  添加被转发微博内部的子控件
- 
  */
-
 -(void)setupRetweetSubviews{
-    
     //1.被转发微博的View
-    
     UIImageView *retweetView = [[UIImageView alloc]init];
-    
     [self.contentView addSubview:retweetView];
-    
     self.retweetView = retweetView;
     
     //2.昵称
-    
     UILabel *retweetLable = [[UILabel alloc]init];
-    
     retweetLable.font = [UIFont systemFontOfSize:14];
-    
     [self.retweetView addSubview:retweetLable];
-    
     self.retweetLable = retweetLable;
     
     //3.正文内容
-    
     UILabel *retweetStatus = [[UILabel alloc]init];
-    
     retweetStatus.numberOfLines = 0; //换行
-    
     retweetStatus.font = [UIFont systemFontOfSize:13];
-    
     [self.retweetView addSubview:retweetStatus];
-    
     self.retweetStatus = retweetStatus;
     
     //4.配图
-    
     UIImageView *retweetImage = [[UIImageView alloc]init];
-    
     [self.retweetView addSubview:retweetImage];
-    
     self.retweetImage = retweetImage;
-    
 }
 
 /**
- 
  *  添加微博工具条
- 
  */
-
 -(void)setupStatusToolBar{
     
-    
-    
 }
 
 /**
- 
  *  传递模型数据
- 
  *
- 
  *  @param cellFrame 模型数据
- 
  */
-
 -(void)setCellFrame:(CellFrame *)cellFrame{
-    
     _cellFrame = cellFrame;
     
     //原创微博
-    
     [self setupOriginalData];
     
     //转发微博
-    
     [self setupRetweetData];
-    
 }
 
-
-
 -(void)setupOriginalData{
-    
     Status *status = self.cellFrame.status;
-    
     WeiboUser *user = status.user;
-    
-    
-    
+
     //1.topVIew
-    
     self.topView.frame = self.cellFrame.topViewFrame;
     
     //2.头像
-    
     // [self.iconView setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageWithName:@"app"]];
-    
     //[self.iconView setImage:[UIImage imageNamed:@"avatar_default_big"]];
-    
     // NSLog(@"%@",user.profile_image_url);
-    
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageWithName:@"avatar_default_small"]];
-    
     self.iconView.frame = self.cellFrame.iconViewFrame;
     
     //3.昵称
-    
     self.nameLable.text = user.name;
-    
     self.nameLable.frame = self.cellFrame.nameLableFrame;
     
     //4.是否是VIP
-    
     if (user.isVip) {
-        
         self.vipView.hidden = NO;
-        
         [self.vipView setImage:[UIImage imageNamed:@"vip"]];
-        
         self.vipView.frame = self.cellFrame.vipViewFrame;
-        
-        
-        
     }else{
-        
         self.vipView.hidden = YES;
-        
     }
     
     //5.时间
-    
     self.timeLable.text = status.created_at;
-    
     self.timeLable.frame = self.cellFrame.timeLableFrame;
     
     //6.来源
-    
     self.sourceLable.text = status.source;
-    
     self.sourceLable.frame = self.cellFrame.sourceLableFrame;
     
     //7.正文
-    
     self.statusLable.text = status.text;
-    
     self.statusLable.frame = self.cellFrame.statusLableFrame;
     
     //8.配图
-    
     if (status.thumbnail_pic) {
-        
         self.statusImage.hidden = NO;
-        
         [self.statusImage sd_setImageWithURL:[NSURL URLWithString:status.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"app"]];
-        
         self.statusImage.frame = self.cellFrame.statusImageFrame;
-        
     }else{
-        
         self.statusImage.hidden = YES;
-        
     }
-    
 }
-
-
 
 -(void)setupRetweetData{
     
