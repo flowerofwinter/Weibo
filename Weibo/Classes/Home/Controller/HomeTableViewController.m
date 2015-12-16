@@ -16,10 +16,12 @@
 #import "Status.h"
 #import "WeiboUser.h"
 #import "MJExtension.h"
+#import "CellFrame.h"
+#import "StatusCell.h"
 #define tBtnDowntag 0
 #define tBtnUptag -1
 @interface HomeTableViewController ()
-@property(nonatomic,strong)NSArray *statuses;
+@property(nonatomic,strong)NSArray *statusFrame;
 @end
 
 @implementation HomeTableViewController
@@ -65,14 +67,24 @@
     //params[@"count"] = @2;
     //发送请求
     [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        NSArray *dictArray = responseObject[@"statuses"];
 //        NSMutableArray *statusArray = [NSMutableArray array];
 //        for (NSDictionary *dict in dictArray) {
 //            Status *status = [Status objectWithKeyValues:dict];
 //            [statusArray addObject:status];
 //        }
 //        self.statuses = statusArray;
-        self.statuses = [Status objectArrayWithKeyValuesArray:dictArray];
+        
+//        NSArray *dictArray = responseObject[@"statuses"];
+//        self.statuses = [Status objectArrayWithKeyValuesArray:dictArray];
+        
+        NSArray *statusArray = [Status objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        NSMutableArray *statusFrameArray = [NSMutableArray array];
+        for (Status *status in statusArray) {
+            CellFrame *cellFrame = [[CellFrame alloc]init];
+            cellFrame.status = status;
+            [statusFrameArray addObject:cellFrame];
+        }
+        self.statusFrame = statusFrameArray;
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
@@ -102,26 +114,15 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.statuses.count;
+    return self.statusFrame.count;
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     //1创建cell
-    static NSString *ID = @"cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:ID];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
-    }
-    //2设置cell的数据
-    Status *status = self.statuses[indexPath.row];
-    cell.textLabel.text = status.text;
+    StatusCell *cell = [StatusCell cellWithTableView:tableView];
+    //2.传递frame模型
+    cell.cellFrame = self.statusFrame[indexPath.row];
     
-    //微博作者的昵称
-    cell.detailTextLabel.text = status.user.name;
-    
-    //微博作者的头像
-    NSString *iconuser = status.user.profile_image_url;
-    [cell.imageView setImageWithURL:[NSURL URLWithString:iconuser] placeholderImage:[UIImage imageWithName:@"icon.png"]];
     return cell;
 }
 
@@ -131,4 +132,13 @@
     vc.hidesBottomBarWhenPushed = YES;
     [self.navigationController pushViewController:vc animated:YES];
 }
+#pragma mark -代理方法
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    CellFrame *cellFrame = self.statusFrame[indexPath.row];
+    return cellFrame.cellHeight;
+}
+
+
+
+
 @end

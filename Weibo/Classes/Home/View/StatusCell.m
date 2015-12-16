@@ -7,7 +7,10 @@
 //
 
 #import "StatusCell.h"
-
+#import "Status.h"
+#import "WeiboUser.h"
+#import "CellFrame.h"
+#import "UIImageView+WebCache.h"
 @interface StatusCell ()
 /**
  *  底层View
@@ -69,9 +72,131 @@
     // Initialization code
 }
 
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
++(instancetype)cellWithTableView:(UITableView *)table{
+    static NSString *ID = @"status";
+    StatusCell *cell = [table dequeueReusableCellWithIdentifier:ID];
+    if (cell == nil) {
+        cell = [[StatusCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:ID];
+    }
+    return cell;
+}
 
+-(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
+    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
+    if (self) {
+        //添加原创微博内部的子控件
+        [self setupOriginalSubviews];
+        //添加被转发微博内部的子控件
+        [self setupRetweetSubviews];
+        //添加微博的工具条
+        [self setupStatusToolBar];
+    }
+    return self;
+}
+
+/**
+ *  添加原创微博内部的子控件
+ */
+-(void)setupOriginalSubviews{
+    //1.底部的View
+    UIImageView *topView = [[UIImageView alloc]init];
+    [self.contentView addSubview:topView];
+    self.topView = topView;
+    //2.头像
+    UIImageView *iconView = [[UIImageView alloc]init];
+    [self.topView addSubview:iconView];
+    self.iconView = iconView;
+    //3.会员图标
+    UIImageView *vipView = [[UIImageView alloc]init];
+    [self.topView addSubview:vipView];
+    self.vipView = vipView;
+    //4.配图
+    UIImageView *photoView = [[UIImageView alloc]init];
+    [self.topView addSubview:photoView];
+    self.statusImage = photoView;
+    //5.昵称
+    UILabel *nameLabel = [[UILabel alloc]init];
+    nameLabel.font = [UIFont systemFontOfSize:14];
+    [self.topView addSubview:nameLabel];
+    self.nameLable = nameLabel;
+    //6.时间
+    UILabel *timeLabel = [[UILabel alloc]init];
+    timeLabel.font = [UIFont systemFontOfSize:12];
+    [self.topView addSubview:timeLabel];
+    self.timeLable = timeLabel;
+    //7.来源
+    UILabel *sourceLabel = [[UILabel alloc]init];
+    sourceLabel.font = [UIFont systemFontOfSize:12];
+    [self.topView addSubview:sourceLabel];
+    self.sourceLable = sourceLabel;
+    //8.正文内容
+    UILabel *contentLabel = [[UILabel alloc]init];
+    contentLabel.numberOfLines = 0; //换行
+    contentLabel.font = [UIFont systemFontOfSize:13];
+    [self.topView addSubview:contentLabel];
+    self.statusLable = contentLabel;
+}
+/**
+ *  添加被转发微博内部的子控件
+ */
+-(void)setupRetweetSubviews{
+    
+}
+/**
+ *  添加微博工具条
+ */
+-(void)setupStatusToolBar{
+    
+}
+/**
+ *  传递模型数据
+ *
+ *  @param cellFrame 模型数据
+ */
+-(void)setCellFrame:(CellFrame *)cellFrame{
+    _cellFrame = cellFrame;
+    //原创微博
+    [self setupOriginalData];
+    //转发微博
+    [self setupRetweetData];
+}
+
+-(void)setupOriginalData{
+    Status *status = self.cellFrame.status;
+    WeiboUser *user = status.user;
+    
+    //1.topVIew
+    self.topView.frame = self.cellFrame.topViewFrame;
+    //2.头像
+   // [self.iconView setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageWithName:@"app"]];
+    //[self.iconView setImage:[UIImage imageNamed:@"avatar_default_big"]];
+   // NSLog(@"%@",user.profile_image_url);
+    [self.iconView sd_setImageWithURL:[NSURL URLWithString:user.profile_image_url] placeholderImage:[UIImage imageWithName:@"avatar_default_small"]];
+    self.iconView.frame = self.cellFrame.iconViewFrame;
+    //3.昵称
+    self.nameLable.text = user.name;
+    self.nameLable.frame = self.cellFrame.nameLableFrame;
+    //4.是否是VIP
+    if (user.isVip) {
+        self.vipView.hidden = NO;
+        [self.vipView setImage:[UIImage imageNamed:@"vip"]];
+        self.vipView.frame = self.cellFrame.vipViewFrame;
+        
+    }else{
+        self.vipView.hidden = YES;
+    }
+    //5.时间
+    self.timeLable.text = status.created_at;
+    self.timeLable.frame = self.cellFrame.timeLableFrame;
+    //6.来源
+    self.sourceLable.text = status.source;
+    self.sourceLable.frame = self.cellFrame.sourceLableFrame;
+    //7.正文
+    self.statusLable.text = status.text;
+    self.statusLable.frame = self.cellFrame.statusLableFrame;
+}
+
+-(void)setupRetweetData{
     
 }
 

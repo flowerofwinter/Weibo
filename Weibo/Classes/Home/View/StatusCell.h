@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class CellFrame;
 @interface StatusCell : UITableViewCell
-
+@property(nonatomic,strong)CellFrame *cellFrame;
++(instancetype)cellWithTableView:(UITableView *)table;
 @end
