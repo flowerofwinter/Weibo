@@ -49,6 +49,16 @@
 		5AC782411BE82B9C002B31C6 /* TitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC782401BE82B9C002B31C6 /* TitleButton.m */; };
 		5AC782481BE86241002B31C6 /* NewFeatureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC782471BE86241002B31C6 /* NewFeatureVC.m */; };
 		5AC7824B1BE88F55002B31C6 /* BDPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7824A1BE88F55002B31C6 /* BDPageControl.m */; };
+		5AD070B91C20090D00F2EDEA /* MJArgument.h in Sources */ = {isa = PBXBuildFile; fileRef = 5AFD4C951C1A5C3B008C8CA6 /* MJArgument.h */; };
+		5AD070BA1C20090D00F2EDEA /* MJExtension.h in Sources */ = {isa = PBXBuildFile; fileRef = 5AFD4C971C1A5C3B008C8CA6 /* MJExtension.h */; };
+		5AD070BB1C20090D00F2EDEA /* MJIvar.h in Sources */ = {isa = PBXBuildFile; fileRef = 5AFD4C981C1A5C3B008C8CA6 /* MJIvar.h */; };
+		5AD070BC1C20090D00F2EDEA /* MJMember.h in Sources */ = {isa = PBXBuildFile; fileRef = 5AFD4C9A1C1A5C3B008C8CA6 /* MJMember.h */; };
+		5AD070BD1C20090D00F2EDEA /* MJMethod.h in Sources */ = {isa = PBXBuildFile; fileRef = 5AFD4C9C1C1A5C3B008C8CA6 /* MJMethod.h */; };
+		5AD070BE1C20090D00F2EDEA /* MJType.h in Sources */ = {isa = PBXBuildFile; fileRef = 5AFD4C9E1C1A5C3B008C8CA6 /* MJType.h */; };
+		5AD070BF1C20090D00F2EDEA /* MJTypeEncoding.h in Sources */ = {isa = PBXBuildFile; fileRef = 5AFD4CA01C1A5C3B008C8CA6 /* MJTypeEncoding.h */; };
+		5AD070C01C20090D00F2EDEA /* NSObject+MJCoding.h in Sources */ = {isa = PBXBuildFile; fileRef = 5AFD4CA21C1A5C3B008C8CA6 /* NSObject+MJCoding.h */; };
+		5AD070C11C20090D00F2EDEA /* NSObject+MJKeyValue.h in Sources */ = {isa = PBXBuildFile; fileRef = 5AFD4CA41C1A5C3B008C8CA6 /* NSObject+MJKeyValue.h */; };
+		5AD070C21C20090D00F2EDEA /* NSObject+MJMember.h in Sources */ = {isa = PBXBuildFile; fileRef = 5AFD4CA61C1A5C3B008C8CA6 /* NSObject+MJMember.h */; };
 		5AD748EF1C181E2E009EDB43 /* Account.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD748EE1C181E2E009EDB43 /* Account.m */; settings = {ASSET_TAGS = (); }; };
 		5AD748F21C181E46009EDB43 /* AccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD748F11C181E46009EDB43 /* AccountTool.m */; settings = {ASSET_TAGS = (); }; };
 		5AD749081C181EBE009EDB43 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD748F61C181EBE009EDB43 /* AFHTTPRequestOperation.m */; settings = {ASSET_TAGS = (); }; };
@@ -801,6 +811,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5AD070B91C20090D00F2EDEA /* MJArgument.h in Sources */,
+				5AD070BA1C20090D00F2EDEA /* MJExtension.h in Sources */,
+				5AD070BB1C20090D00F2EDEA /* MJIvar.h in Sources */,
+				5AD070BC1C20090D00F2EDEA /* MJMember.h in Sources */,
+				5AD070BD1C20090D00F2EDEA /* MJMethod.h in Sources */,
+				5AD070BE1C20090D00F2EDEA /* MJType.h in Sources */,
+				5AD070BF1C20090D00F2EDEA /* MJTypeEncoding.h in Sources */,
+				5AD070C01C20090D00F2EDEA /* NSObject+MJCoding.h in Sources */,
+				5AD070C11C20090D00F2EDEA /* NSObject+MJKeyValue.h in Sources */,
+				5AD070C21C20090D00F2EDEA /* NSObject+MJMember.h in Sources */,
 				5A75EA1F1C1959190058D425 /* UIImageView+HighlightedWebCache.m in Sources */,
 				5AFD4CA81C1A5C3B008C8CA6 /* MJArgument.m in Sources */,
 				5AD7490E1C181EBE009EDB43 /* AFURLRequestSerialization.m in Sources */,
@@ -973,6 +993,7 @@
 				INFOPLIST_FILE = Weibo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -987,6 +1008,7 @@
 				INFOPLIST_FILE = Weibo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

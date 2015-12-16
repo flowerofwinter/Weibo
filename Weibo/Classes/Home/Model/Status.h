@@ -30,6 +30,10 @@
  */
 @property(nonatomic,assign)int comments_count;
 /**
+ *  表态数，点赞数
+ */
+@property(nonatomic,assign)int attitudes_count;
+/**
  *  微薄的作者
  */
 @property(nonatomic,strong)WeiboUser *user;
@@ -41,4 +45,8 @@
  *  微博发出时间
  */
 @property(nonatomic,copy)NSString *created_at;
+/**
+ *  被转发的微博
+ */
+@property(nonatomic,strong)Status *retweeted_status;
 @end

@@ -57,6 +57,10 @@
  *  被转发的微博图片
  */
 @property(nonatomic, weak)UIImageView *retweetImage;
+/**
+ *  微博工具条
+ */
+@property(nonatomic, weak)UIImageView *statusToolBar;
 @end
 
 @implementation StatusCell
