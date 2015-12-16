@@ -46,6 +46,7 @@
 		5AA138FF1BCF6C5200BA905A /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA138FE1BCF6C5200BA905A /* TabBar.m */; };
 		5AAB3D611C1AD108007577AA /* StatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB3D601C1AD108007577AA /* StatusCell.m */; settings = {ASSET_TAGS = (); }; };
 		5AB08DB31C15130600A0D137 /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB08DB21C15130600A0D137 /* OAuthViewController.m */; settings = {ASSET_TAGS = (); }; };
+		5ABBC5651C2215A2008432E7 /* CellFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABBC5641C2215A2008432E7 /* CellFrame.m */; settings = {ASSET_TAGS = (); }; };
 		5AC782411BE82B9C002B31C6 /* TitleButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC782401BE82B9C002B31C6 /* TitleButton.m */; };
 		5AC782481BE86241002B31C6 /* NewFeatureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC782471BE86241002B31C6 /* NewFeatureVC.m */; };
 		5AC7824B1BE88F55002B31C6 /* BDPageControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AC7824A1BE88F55002B31C6 /* BDPageControl.m */; };
@@ -173,6 +174,8 @@
 		5AAB3D601C1AD108007577AA /* StatusCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusCell.m; sourceTree = "<group>"; };
 		5AB08DB11C15130600A0D137 /* OAuthViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthViewController.h; sourceTree = "<group>"; };
 		5AB08DB21C15130600A0D137 /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthViewController.m; sourceTree = "<group>"; };
+		5ABBC5631C2215A2008432E7 /* CellFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellFrame.h; sourceTree = "<group>"; };
+		5ABBC5641C2215A2008432E7 /* CellFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellFrame.m; sourceTree = "<group>"; };
 		5AC7823F1BE82B9C002B31C6 /* TitleButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleButton.h; sourceTree = "<group>"; };
 		5AC782401BE82B9C002B31C6 /* TitleButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleButton.m; sourceTree = "<group>"; };
 		5AC782461BE86241002B31C6 /* NewFeatureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewFeatureVC.h; sourceTree = "<group>"; };
@@ -319,6 +322,8 @@
 				5A75EA231C196DC10058D425 /* Status.m */,
 				5A75EA251C196E620058D425 /* WeiboUser.h */,
 				5A75EA261C196E620058D425 /* WeiboUser.m */,
+				5ABBC5631C2215A2008432E7 /* CellFrame.h */,
+				5ABBC5641C2215A2008432E7 /* CellFrame.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -862,6 +867,7 @@
 				5AFD4CAA1C1A5C3B008C8CA6 /* MJMember.m in Sources */,
 				5A3E75761BCF146000D9369F /* TabBarViewController.m in Sources */,
 				5AD7490A1C181EBE009EDB43 /* AFHTTPSessionManager.m in Sources */,
+				5ABBC5651C2215A2008432E7 /* CellFrame.m in Sources */,
 				5A75EA271C196E620058D425 /* WeiboUser.m in Sources */,
 				5A3E75741BCF146000D9369F /* DiscoverTableViewController.m in Sources */,
 				5AB08DB31C15130600A0D137 /* OAuthViewController.m in Sources */,
