@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#define CellBorder 5
+#define CellBorder 10
 #define StatusNameFont @{NSFontAttributeName:[UIFont systemFontOfSize:14]}
 #define StatusTimeFont @{NSFontAttributeName:[UIFont systemFontOfSize:12]}
 #define StatusTextFont @{NSFontAttributeName:[UIFont systemFontOfSize:13]}
+//cell的缩进
+#define CellWidth 5
 @class Status;
 @interface CellFrame : NSObject
 /**

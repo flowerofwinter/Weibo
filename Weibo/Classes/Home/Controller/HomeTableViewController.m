@@ -35,10 +35,12 @@
 }
 
 -(void)setupNavBar{
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
-    btn.center = CGPointMake(100, 100);
-    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:btn];
+    
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeContactAdd];
+//    btn.center = CGPointMake(100, 100);
+//    [btn addTarget:self action:@selector(btnClick) forControlEvents:UIControlEventTouchUpInside];
+//    [self.view addSubview:btn];
+    
     //左边按钮
     self.navigationItem.leftBarButtonItem = [UIBarButtonItem itemWithIcon:@"navigationbar_friendsearch" highIcon:@"navigationbar_friendsearch_highlighted" addTarget:self action:@selector(addFriend)];
     
@@ -56,6 +58,9 @@
     [tbtn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
     tbtn.tag = tBtnDowntag;
     self.navigationItem.titleView = tbtn;
+    
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, CellWidth, 0);
+    self.tableView.backgroundColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.89f alpha:1.00f];
 }
 
 -(void)setupStatusData{
@@ -87,7 +92,7 @@
         self.statusFrame = statusFrameArray;
         [self.tableView reloadData];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        
+
     }];
 }
 
