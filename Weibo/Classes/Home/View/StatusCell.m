@@ -275,6 +275,7 @@
         self.retweetView.hidden = NO;
         //1.父控件
         self.retweetView.frame = self.cellFrame.retweetViewFrame;
+       // NSLog(@"%@",NSStringFromCGRect(self.retweetView.frame));
         //2.昵称
         self.retweetLable.text = user.name;
         self.retweetLable.frame = self.cellFrame.retweetLableFrame;

@@ -65,17 +65,23 @@
         //retweetViewFrame
         CGFloat retweetViewX = iconViewXY;
         CGFloat retweetViewY = CGRectGetMaxY(_statusLableFrame) + CellBorder;
-        CGFloat retweetViewW = textSize.width - 2*CellBorder;
+        
+        CGFloat retweetViewW = topViewW - 2*CellBorder; //
         CGFloat retweetViewH = 0;
         //被转发微博的作者昵称retweetLableFrame
         CGFloat retweetLableXY = retweetViewX + CellBorder;
         CGSize retweetLableSize = [status.retweeted_status.user.idstr sizeWithAttributes:StatusNameFont];
         _retweetLableFrame = (CGRect){{retweetLableXY,retweetLableXY},retweetLableSize};
-        //retweetStatusFrame
+        //retweetStatusFrame被转发的微博正文
         CGFloat retweetStatusX = retweetLableXY;
         CGFloat retweetStatusY = CGRectGetMaxY(_retweetLableFrame) + CellBorder;
+        
+        
         CGFloat retweetStatusMaxW = retweetViewW - 2*CellBorder;
+        //CGFloat retweetStatusMaxW = topViewW - 4*CellBorder;//宽度必须是个定值，且与背景边框联动,改动了retweetViewW
+        
         CGSize retweetStatusSize = [status.retweeted_status.text boundingRectWithSize:CGSizeMake(retweetStatusMaxW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:StatusTextFont context:nil].size;
+       // NSLog(@"%@",NSStringFromCGSize(retweetStatusSize));
         _retweetStatusFrame = (CGRect){{retweetStatusX,retweetStatusY},retweetStatusSize};
         //retweetImageFrame
         if (status.retweeted_status.thumbnail_pic) {
@@ -94,7 +100,7 @@
         topViewH = CGRectGetMaxY(_retweetViewFrame) + CellBorder;
     }else{
         if (status.thumbnail_pic) {//有图
-            topViewH = CGRectGetMaxY(_retweetImageFrame) + CellBorder;
+            topViewH = CGRectGetMaxY(_statusImageFrame) + CellBorder;
         }else{
             topViewH = CGRectGetMaxY(_statusLableFrame) + CellBorder;
         }

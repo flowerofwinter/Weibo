@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define CellBorder 10
+#define CellBorder 5
 #define StatusNameFont @{NSFontAttributeName:[UIFont systemFontOfSize:14]}
 #define StatusTimeFont @{NSFontAttributeName:[UIFont systemFontOfSize:12]}
 #define StatusTextFont @{NSFontAttributeName:[UIFont systemFontOfSize:13]}
