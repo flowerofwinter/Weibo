@@ -19,6 +19,7 @@
 #import "WeiboUser.h"
 #import "CellFrame.h"
 #import "UIImageView+WebCache.h"
+#import "StatusTooBbar.h"
 @interface StatusCell ()
 
 /**
@@ -72,7 +73,7 @@
 /**
  *  微博工具条
  */
-@property(nonatomic, weak)UIImageView *statusToolBar;
+@property(nonatomic, weak)StatusTooBbar *statusToolBar;
 @end
 
 @implementation StatusCell
@@ -104,12 +105,14 @@
  */
 -(void)setupOriginalSubviews{
     //0.设置cell选中时的的背景
-    UIImageView *bgView = [[UIImageView alloc]init];
-    bgView.image = [UIImage resizeImageWithName:@"common_card_background_highlighted"];
-    self.selectedBackgroundView = bgView;
+//    UIImageView *bgView = [[UIImageView alloc]init];
+//    bgView.image = [UIImage resizeImageWithName:@"common_card_background_highlighted"];
+//    self.selectedBackgroundView = bgView;
+    self.selectedBackgroundView = [[UIView alloc]init];
     //1.底部的Vie
     UIImageView *topView = [[UIImageView alloc]init];
     topView.image = [UIImage resizeImageWithName:@"timeline_card_top_background"];
+    topView.highlightedImage = [UIImage resizeImageWithName:@"timeline_card_top_background_highlighted"];
     [self.contentView addSubview:topView];
     self.topView = topView;
     //2.头像
@@ -119,6 +122,7 @@
     //3.会员图标
     UIImageView *vipView = [[UIImageView alloc]init];
     [self.topView addSubview:vipView];
+    vipView.contentMode = UIViewContentModeCenter;
     self.vipView = vipView;
     //4.配图
     UIImageView *statusImage = [[UIImageView alloc]init];
@@ -133,6 +137,7 @@
     //6.时间
     UILabel *timeLabel = [[UILabel alloc]init];
     timeLabel.font = [UIFont systemFontOfSize:12];
+    timeLabel.textColor = [UIColor colorWithRed:1.00f green:0.77f blue:0.00f alpha:1.00f];
     timeLabel.backgroundColor = [UIColor clearColor];
     [self.topView addSubview:timeLabel];
     self.timeLable = timeLabel;
@@ -165,6 +170,7 @@
     UILabel *retweetLable = [[UILabel alloc]init];
     retweetLable.font = [UIFont systemFontOfSize:14];
     retweetLable.backgroundColor = [UIColor clearColor];
+    retweetLable.textColor = [UIColor colorWithRed:0.37f green:0.64f blue:0.98f alpha:1.00f];
     [self.retweetView addSubview:retweetLable];
     self.retweetLable = retweetLable;
     
@@ -186,8 +192,7 @@
  *  添加微博工具条
  */
 -(void)setupStatusToolBar{
-    UIImageView *statusToolBar = [[UIImageView alloc]init];
-    statusToolBar.image = [UIImage resizeImageWithName:@"timeline_card_bottom_background"];
+    StatusTooBbar *statusToolBar = [[StatusTooBbar alloc]init];
     [self.contentView addSubview:statusToolBar];
     self.statusToolBar = statusToolBar;
 }
@@ -237,21 +242,26 @@
     self.nameLable.frame = self.cellFrame.nameLableFrame;
     
     //4.是否是VIP
-    if (user.isVip) {
+    if (user.mbrank) {
         self.vipView.hidden = NO;
-        [self.vipView setImage:[UIImage imageNamed:@"vip"]];
+        [self.vipView setImage:[UIImage imageNamed:@"common_icon_membership"]];
         self.vipView.frame = self.cellFrame.vipViewFrame;
     }else{
         self.vipView.hidden = YES;
     }
     
-    //5.时间
+    //发微博时间
     self.timeLable.text = status.created_at;
-    self.timeLable.frame = self.cellFrame.timeLableFrame;
-    
-    //6.来源
+    CGFloat timeLabelX = self.cellFrame.nameLableFrame.origin.x;
+    CGFloat timeLabelY = CGRectGetMaxY(self.cellFrame.nameLableFrame) + CellBorder;
+    CGSize timeLabelSize = [status.created_at sizeWithAttributes:StatusTimeFont];
+    self.timeLable.frame = (CGRect){{timeLabelX,timeLabelY},timeLabelSize};
+    //来源
     self.sourceLable.text = status.source;
-    self.sourceLable.frame = self.cellFrame.sourceLableFrame;
+    CGFloat sourceLabelX = CGRectGetMaxX(self.timeLable.frame) + CellBorder;
+    CGFloat sourceLabelY = timeLabelY;
+    CGSize sourceLabelSize = [status.source sizeWithAttributes:StatusTimeFont];
+    self.sourceLable.frame = (CGRect){{sourceLabelX,sourceLabelY},sourceLabelSize};
     
     //7.正文
     self.statusLable.text = status.text;
@@ -277,7 +287,7 @@
         self.retweetView.frame = self.cellFrame.retweetViewFrame;
        // NSLog(@"%@",NSStringFromCGRect(self.retweetView.frame));
         //2.昵称
-        self.retweetLable.text = user.name;
+        self.retweetLable.text = [NSString stringWithFormat:@"@%@",user.name];
         self.retweetLable.frame = self.cellFrame.retweetLableFrame;
         //3.正文
         self.retweetStatus.text = retweetedstatus.text;

@@ -20,6 +20,7 @@
 		5A5426AD1BCE6A150014205B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5A5426AC1BCE6A150014205B /* Images.xcassets */; };
 		5A5426BC1BCE6A160014205B /* WeiboTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5426BB1BCE6A160014205B /* WeiboTests.m */; };
 		5A5764FA1BCF76920063892B /* TabBarButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5764F91BCF76920063892B /* TabBarButton.m */; };
+		5A5CA7C51C23E8F100515E23 /* StatusTooBbar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A5CA7C41C23E8F100515E23 /* StatusTooBbar.m */; settings = {ASSET_TAGS = (); }; };
 		5A60332D1BD9C71D009502B0 /* BDNVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A60332C1BD9C71D009502B0 /* BDNVController.m */; };
 		5A75EA241C196DC10058D425 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A75EA231C196DC10058D425 /* Status.m */; settings = {ASSET_TAGS = (); }; };
 		5A75EA271C196E620058D425 /* WeiboUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A75EA261C196E620058D425 /* WeiboUser.m */; settings = {ASSET_TAGS = (); }; };
@@ -112,6 +113,8 @@
 		5A5426BB1BCE6A160014205B /* WeiboTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WeiboTests.m; sourceTree = "<group>"; };
 		5A5764F81BCF76920063892B /* TabBarButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBarButton.h; sourceTree = "<group>"; };
 		5A5764F91BCF76920063892B /* TabBarButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TabBarButton.m; sourceTree = "<group>"; };
+		5A5CA7C31C23E8F100515E23 /* StatusTooBbar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatusTooBbar.h; sourceTree = "<group>"; };
+		5A5CA7C41C23E8F100515E23 /* StatusTooBbar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatusTooBbar.m; sourceTree = "<group>"; };
 		5A60332B1BD9C71D009502B0 /* BDNVController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDNVController.h; sourceTree = "<group>"; };
 		5A60332C1BD9C71D009502B0 /* BDNVController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDNVController.m; sourceTree = "<group>"; };
 		5A75EA221C196DC10058D425 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
@@ -325,6 +328,8 @@
 				5AC782401BE82B9C002B31C6 /* TitleButton.m */,
 				5AAB3D5F1C1AD108007577AA /* StatusCell.h */,
 				5AAB3D601C1AD108007577AA /* StatusCell.m */,
+				5A5CA7C31C23E8F100515E23 /* StatusTooBbar.h */,
+				5A5CA7C41C23E8F100515E23 /* StatusTooBbar.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -842,6 +847,7 @@
 				5ABBC5D91C221837008432E7 /* AFURLConnectionOperation.m in Sources */,
 				5A3E75741BCF146000D9369F /* DiscoverTableViewController.m in Sources */,
 				5ABBC5A41C2217A1008432E7 /* MBProgressHUD+MJ.m in Sources */,
+				5A5CA7C51C23E8F100515E23 /* StatusTooBbar.m in Sources */,
 				5AB08DB31C15130600A0D137 /* OAuthViewController.m in Sources */,
 				5A5764FA1BCF76920063892B /* TabBarButton.m in Sources */,
 				5ABBC5D71C221837008432E7 /* AFNetworkReachabilityManager.m in Sources */,

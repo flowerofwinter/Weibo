@@ -22,14 +22,14 @@
     CGFloat iconViewWH = 35;
     _iconViewFrame = CGRectMake(iconViewXY, iconViewXY, iconViewWH, iconViewWH);
     //昵称
-    CGFloat nameLabelX = iconViewXY + iconViewWH;
+    CGFloat nameLabelX = iconViewXY + iconViewWH + CellBorder;
     CGFloat nameLabelY = iconViewXY;
     //   CGFloat FontHeight = 25;
     //  NSDictionary *FontDict =@{NSFontAttributeName:[UIFont systemFontOfSize:25]};//对于字体属性的设置
     CGSize nameSize = [status.user.name sizeWithAttributes:StatusNameFont];//sizeWithAttributes方法的使用
     _nameLableFrame = (CGRect){{nameLabelX,nameLabelY},nameSize};//另类写法
     //是否是会员
-    if (status.user.isVip) {
+    if (status.user.mbrank) {
         CGFloat vipX = CGRectGetMaxX(_nameLableFrame) + CellBorder; //CGRectGetMaxX
         CGFloat vipY = iconViewXY;
         CGFloat vipW = 14;
@@ -70,7 +70,8 @@
         CGFloat retweetViewH = 0;
         //被转发微博的作者昵称retweetLableFrame
         CGFloat retweetLableXY = retweetViewX + CellBorder;
-        CGSize retweetLableSize = [status.retweeted_status.user.idstr sizeWithAttributes:StatusNameFont];
+        NSString *name = [NSString stringWithFormat:@"@%@",status.retweeted_status.user.idstr];
+        CGSize retweetLableSize = [name sizeWithAttributes:StatusNameFont];
         _retweetLableFrame = (CGRect){{retweetLableXY,retweetLableXY},retweetLableSize};
         //retweetStatusFrame被转发的微博正文
         CGFloat retweetStatusX = retweetLableXY;
