@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Status.h"
 @interface StatusTooBbar : UIImageView
-
+@property(nonatomic,strong)Status *status;
 @end

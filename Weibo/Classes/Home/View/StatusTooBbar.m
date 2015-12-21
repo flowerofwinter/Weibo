@@ -10,6 +10,9 @@
 @interface StatusTooBbar()
 @property(nonatomic,strong)NSMutableArray *btnCounts;
 @property(nonatomic,strong)NSMutableArray *dividerCounts;
+@property(nonatomic, weak)UIButton *reweetBtn;
+@property(nonatomic, weak)UIButton *commentBtn;
+@property(nonatomic, weak)UIButton *attitudeBtn;
 @end
 @implementation StatusTooBbar
 
@@ -36,9 +39,9 @@
         self.highlightedImage = [UIImage imageNamed:@"timeline_card_bottom_background_highlighted"];
         
         //添加按钮
-        [self setupBtnWithTitle:@"转发" image:@"timeline_icon_retweet" bgImage:@"timeline_card_leftbottom_highlighted"];
-        [self setupBtnWithTitle:@"评论" image:@"timeline_icon_comment" bgImage:@"timeline_card_middlebottom_highlighted"];
-        [self setupBtnWithTitle:@"赞" image:@"timeline_icon_unlike" bgImage:@"timeline_card_rightbottom_highlighted"];
+        self.reweetBtn = [self setupBtnWithTitle:@"转发" image:@"timeline_icon_retweet" bgImage:@"timeline_card_leftbottom_highlighted"];
+        self.commentBtn = [self setupBtnWithTitle:@"评论" image:@"timeline_icon_comment" bgImage:@"timeline_card_middlebottom_highlighted"];
+        self.attitudeBtn = [self setupBtnWithTitle:@"赞" image:@"timeline_icon_unlike" bgImage:@"timeline_card_rightbottom_highlighted"];
         
         //设置分割图片
         [self setupDivider];
@@ -54,7 +57,7 @@
     [self.dividerCounts addObject:divider];
 }
 
--(void)setupBtnWithTitle:(NSString *)title image:(NSString *)image bgImage:(NSString *)bgImage{
+-(UIButton *)setupBtnWithTitle:(NSString *)title image:(NSString *)image bgImage:(NSString *)bgImage{
     UIButton *btn = [[UIButton alloc]init];
     [btn setTitle:title forState:UIControlStateNormal];
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
@@ -65,6 +68,31 @@
     [btn setBackgroundImage:[UIImage resizeImageWithName:bgImage] forState:UIControlStateHighlighted];
     [self addSubview:btn];
     [self.btnCounts addObject:btn];
+    return btn;
+}
+
+-(void)setStatus:(Status *)status{
+    _status = status;
+    [self setupBtn:self.reweetBtn originalTitle:@"转发" count:status.reposts_count];
+    [self setupBtn:self.commentBtn originalTitle:@"评论" count:status.comments_count];
+    [self setupBtn:self.attitudeBtn originalTitle:@"赞" count:status.attitudes_count];
+}
+
+-(void)setupBtn:(UIButton *)btn originalTitle:(NSString *)originalTitle count:(int)count{
+    if (count) {
+        NSString *title = nil;
+        if (count<10000) {
+            title = [NSString stringWithFormat:@"%d",count];
+        }else{
+//            double countD = count/1000*0.1; 取小数点后一位小数的妙极方法，但是有一点就是不能对这位小数做四舍五入处理
+            double countD = count/10000.0;//除数带.0商才是小数
+            title = [NSString stringWithFormat:@"%.1f万",countD];
+            title = [title stringByReplacingOccurrencesOfString:@".0" withString:@""];//不需要再加判断，巧妙的解决了.0这种情况
+        }
+        [btn setTitle:title forState:UIControlStateNormal];
+    }else{
+        [btn setTitle:originalTitle forState:UIControlStateNormal];
+    }
 }
 
 -(void)layoutSubviews{
