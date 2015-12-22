@@ -29,6 +29,7 @@
 		5AAB3D611C1AD108007577AA /* StatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB3D601C1AD108007577AA /* StatusCell.m */; settings = {ASSET_TAGS = (); }; };
 		5AB08DB31C15130600A0D137 /* OAuthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB08DB21C15130600A0D137 /* OAuthViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5AB2F5881C28ECBA00ED3DEF /* RetweetStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB2F5871C28ECBA00ED3DEF /* RetweetStatusView.m */; settings = {ASSET_TAGS = (); }; };
+		5AB2F58B1C292CA900ED3DEF /* OriginalStatusView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AB2F58A1C292CA900ED3DEF /* OriginalStatusView.m */; settings = {ASSET_TAGS = (); }; };
 		5ABBC5651C2215A2008432E7 /* CellFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABBC5641C2215A2008432E7 /* CellFrame.m */; settings = {ASSET_TAGS = (); }; };
 		5ABBC5A41C2217A1008432E7 /* MBProgressHUD+MJ.m in Sources */ = {isa = PBXBuildFile; fileRef = 5ABBC56A1C2217A1008432E7 /* MBProgressHUD+MJ.m */; settings = {ASSET_TAGS = (); }; };
 		5ABBC5A51C2217A1008432E7 /* MBProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5ABBC56B1C2217A1008432E7 /* MBProgressHUD.bundle */; settings = {ASSET_TAGS = (); }; };
@@ -132,6 +133,8 @@
 		5AB08DB21C15130600A0D137 /* OAuthViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthViewController.m; sourceTree = "<group>"; };
 		5AB2F5861C28ECBA00ED3DEF /* RetweetStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RetweetStatusView.h; sourceTree = "<group>"; };
 		5AB2F5871C28ECBA00ED3DEF /* RetweetStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RetweetStatusView.m; sourceTree = "<group>"; };
+		5AB2F5891C292CA900ED3DEF /* OriginalStatusView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OriginalStatusView.h; sourceTree = "<group>"; };
+		5AB2F58A1C292CA900ED3DEF /* OriginalStatusView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OriginalStatusView.m; sourceTree = "<group>"; };
 		5ABBC5631C2215A2008432E7 /* CellFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CellFrame.h; sourceTree = "<group>"; };
 		5ABBC5641C2215A2008432E7 /* CellFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CellFrame.m; sourceTree = "<group>"; };
 		5ABBC5691C2217A1008432E7 /* MBProgressHUD+MJ.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MBProgressHUD+MJ.h"; sourceTree = "<group>"; };
@@ -331,6 +334,8 @@
 				5AC782401BE82B9C002B31C6 /* TitleButton.m */,
 				5AAB3D5F1C1AD108007577AA /* StatusCell.h */,
 				5AAB3D601C1AD108007577AA /* StatusCell.m */,
+				5AB2F5891C292CA900ED3DEF /* OriginalStatusView.h */,
+				5AB2F58A1C292CA900ED3DEF /* OriginalStatusView.m */,
 				5AB2F5861C28ECBA00ED3DEF /* RetweetStatusView.h */,
 				5AB2F5871C28ECBA00ED3DEF /* RetweetStatusView.m */,
 				5A5CA7C31C23E8F100515E23 /* StatusTooBbar.h */,
@@ -816,6 +821,7 @@
 				5AB2F5881C28ECBA00ED3DEF /* RetweetStatusView.m in Sources */,
 				5ABBC5B41C2217A1008432E7 /* SDWebImageDecoder.m in Sources */,
 				5ABBC5B71C2217A1008432E7 /* SDWebImageManager.m in Sources */,
+				5AB2F58B1C292CA900ED3DEF /* OriginalStatusView.m in Sources */,
 				5ABBC5AD1C2217A1008432E7 /* NSObject+MJCoding.m in Sources */,
 				5AA138FF1BCF6C5200BA905A /* TabBar.m in Sources */,
 				5A8397E51BD098B50028874E /* BadgeButton.m in Sources */,
