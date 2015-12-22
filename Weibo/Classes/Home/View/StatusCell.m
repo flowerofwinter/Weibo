@@ -20,6 +20,7 @@
 #import "CellFrame.h"
 #import "UIImageView+WebCache.h"
 #import "StatusTooBbar.h"
+#import "RetweetStatusView.h"
 @interface StatusCell ()
 
 /**
@@ -57,19 +58,7 @@
 /**
  *  转发微博的容器View
  */
-@property(nonatomic, weak)UIImageView *retweetView;
-/**
- *  被转发作者的昵称
- */
-@property(nonatomic, weak)UILabel *retweetLable;
-/**
- *  被转发的内容
- */
-@property(nonatomic, weak)UILabel *retweetStatus;
-/**
- *  被转发的微博图片
- */
-@property(nonatomic, weak)UIImageView *retweetImage;
+@property(nonatomic, weak)RetweetStatusView *retweetView;
 /**
  *  微博工具条
  */
@@ -161,31 +150,9 @@
  */
 -(void)setupRetweetSubviews{
     //1.被转发微博的View
-    UIImageView *retweetView = [[UIImageView alloc]init];
-    retweetView.image = [UIImage resizeImageWithName:@"timeline_retweet_background" left:0.9 top:0.5];
+    RetweetStatusView *retweetView = [[RetweetStatusView alloc]init];
     [self.contentView addSubview:retweetView];
     self.retweetView = retweetView;
-    
-    //2.昵称
-    UILabel *retweetLable = [[UILabel alloc]init];
-    retweetLable.font = [UIFont systemFontOfSize:14];
-    retweetLable.backgroundColor = [UIColor clearColor];
-    retweetLable.textColor = [UIColor colorWithRed:0.37f green:0.64f blue:0.98f alpha:1.00f];
-    [self.retweetView addSubview:retweetLable];
-    self.retweetLable = retweetLable;
-    
-    //3.正文内容
-    UILabel *retweetStatus = [[UILabel alloc]init];
-    retweetStatus.numberOfLines = 0; //换行
-    retweetStatus.font = [UIFont systemFontOfSize:13];
-    retweetStatus.backgroundColor = [UIColor clearColor];
-    [self.retweetView addSubview:retweetStatus];
-    self.retweetStatus = retweetStatus;
-    
-    //4.配图
-    UIImageView *retweetImage = [[UIImageView alloc]init];
-    [self.retweetView addSubview:retweetImage];
-    self.retweetImage = retweetImage;
 }
 
 /**
@@ -278,31 +245,8 @@
 }
 
 -(void)setupRetweetData{
-    Status *retweetedstatus = self.cellFrame.status.retweeted_status;
-    WeiboUser *user = retweetedstatus.user;
-    
-    if (retweetedstatus) {
-        self.retweetView.hidden = NO;
-        //1.父控件
-        self.retweetView.frame = self.cellFrame.retweetViewFrame;
-       // NSLog(@"%@",NSStringFromCGRect(self.retweetView.frame));
-        //2.昵称
-        self.retweetLable.text = [NSString stringWithFormat:@"@%@",user.name];
-        self.retweetLable.frame = self.cellFrame.retweetLableFrame;
-        //3.正文
-        self.retweetStatus.text = retweetedstatus.text;
-        self.retweetStatus.frame = self.cellFrame.retweetStatusFrame;
-        //4.配图
-        if (retweetedstatus.thumbnail_pic) {
-            self.retweetImage.hidden = NO;
-            [self.retweetImage sd_setImageWithURL:[NSURL URLWithString:retweetedstatus.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"app"]];
-            self.retweetImage.frame = self.cellFrame.retweetImageFrame;
-        }else{
-            self.retweetImage.hidden = YES;
-        }
-    }else{
-        self.retweetView.hidden = YES;
-    }
+    self.retweetView.retweetData = self.cellFrame;
+  //  self.retweetView.frame = self.cellFrame.retweetViewFrame;
 }
 
 -(void)setupStatusBarData{
