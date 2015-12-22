@@ -56,31 +56,21 @@
 
 -(void)setRetweetData:(CellFrame *)retweetData{
     _retweetData = retweetData;  //set方法第一行就是这个，要不没数据
-    if (retweetData.status.retweeted_status) {
-        Status *retweetedstatus = retweetData.status.retweeted_status;
-        WeiboUser *user = retweetedstatus.user;
-
-        self.hidden = NO;
-        //1.父控件
-        self.frame = self.retweetData.retweetViewFrame;
-        // NSLog(@"%@",NSStringFromCGRect(self.retweetView.frame));
-        //2.昵称
-        self.retweetLable.text = [NSString stringWithFormat:@"@%@",user.name];
-        self.retweetLable.frame = self.retweetData.retweetLableFrame;
-        //3.正文
-        self.retweetStatus.text = retweetedstatus.text;
-        self.retweetStatus.frame = self.retweetData.retweetStatusFrame;
-        //4.配图
-        if (retweetedstatus.thumbnail_pic) {
-            self.retweetImage.hidden = NO;
-            [self.retweetImage sd_setImageWithURL:[NSURL URLWithString:retweetedstatus.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"app"]];
-            self.retweetImage.frame = self.retweetData.retweetImageFrame;
-        }else{
-            self.retweetImage.hidden = YES;
-        }
+    Status *retweetedstatus = retweetData.status.retweeted_status;
+    WeiboUser *user = retweetedstatus.user;
+    //1.昵称
+    self.retweetLable.text = [NSString stringWithFormat:@"@%@",user.name];
+    self.retweetLable.frame = self.retweetData.retweetLableFrame;
+    //2.正文
+    self.retweetStatus.text = retweetedstatus.text;
+    self.retweetStatus.frame = self.retweetData.retweetStatusFrame;
+    //3.配图
+    if (retweetedstatus.thumbnail_pic) {
+        self.retweetImage.hidden = NO;
+        [self.retweetImage sd_setImageWithURL:[NSURL URLWithString:retweetedstatus.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"app"]];
+        self.retweetImage.frame = self.retweetData.retweetImageFrame;
     }else{
-        self.hidden = YES;
+        self.retweetImage.hidden = YES;
     }
-
 }
 @end

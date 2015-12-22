@@ -245,8 +245,15 @@
 }
 
 -(void)setupRetweetData{
-    self.retweetView.retweetData = self.cellFrame;
   //  self.retweetView.frame = self.cellFrame.retweetViewFrame;
+    Status *retweetStatus = self.cellFrame.status.retweeted_status;
+    if (retweetStatus) {
+        self.retweetView.hidden = NO;
+        self.retweetView.frame = self.cellFrame.retweetViewFrame;
+        self.retweetView.retweetData = self.cellFrame;
+    }else{
+        self.retweetView.hidden = YES;
+    }
 }
 
 -(void)setupStatusBarData{
