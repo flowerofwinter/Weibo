@@ -7,7 +7,8 @@
 //
 
 #import "Status.h"
-
+#import "StatusImage.h"
+#import "MJExtension.h"
 @implementation Status
 -(NSString *)created_at{
     NSDateFormatter *fmt = [[NSDateFormatter alloc]init];//日期格式化
@@ -67,5 +68,11 @@
         _source = [NSString stringWithFormat:@"来自%@",newSource];
     }else{
     }
+}
+/**
+ *  将数组中的字典转换成模型的第二种方法
+ */
+-(NSDictionary *)objectClassInArray{
+    return @{@"pic_urls":[StatusImage class]};
 }
 @end

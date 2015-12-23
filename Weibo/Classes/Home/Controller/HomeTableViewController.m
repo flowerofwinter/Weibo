@@ -18,6 +18,7 @@
 #import "MJExtension.h"
 #import "CellFrame.h"
 #import "StatusCell.h"
+#import "StatusImage.h"
 #define tBtnDowntag 0
 #define tBtnUptag -1
 @interface HomeTableViewController ()
@@ -69,7 +70,7 @@
     //封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [AccountTool Account].access_token;
-    //params[@"count"] = @2;
+    //params[@"count"] = @50;
     //发送请求
     [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSMutableArray *statusArray = [NSMutableArray array];
@@ -91,6 +92,9 @@
         }
         self.statusFrame = statusFrameArray;
         [self.tableView reloadData];
+//        for (Status *status in statusArray) {
+//            NSLog(@"%@",[[status.pic_urls lastObject] class]);
+//        }
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 
     }];

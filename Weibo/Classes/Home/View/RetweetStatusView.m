@@ -8,7 +8,7 @@
 
 #import "RetweetStatusView.h"
 
-
+#import "StatusImage.h"
 #import "UIImageView+WebCache.h"
 @interface RetweetStatusView ()
 /**
@@ -65,9 +65,10 @@
     self.retweetStatus.text = retweetedstatus.text;
     self.retweetStatus.frame = self.retweetData.retweetStatusFrame;
     //3.配图
-    if (retweetedstatus.thumbnail_pic) {
+    if (retweetedstatus.pic_urls.count) {
         self.retweetImage.hidden = NO;
-        [self.retweetImage sd_setImageWithURL:[NSURL URLWithString:retweetedstatus.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"app"]];
+        StatusImage *simage = retweetedstatus.pic_urls.firstObject;
+        [self.retweetImage sd_setImageWithURL:[NSURL URLWithString:simage.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"app"]];
         self.retweetImage.frame = self.retweetData.retweetImageFrame;
     }else{
         self.retweetImage.hidden = YES;

@@ -38,9 +38,9 @@
  */
 @property(nonatomic,strong)WeiboUser *user;
 /**
- *  微博配图
+ *  微博配图有多张的时候,微博配图ID，与thumbnail_pic拼接成的URL
  */
-@property(nonatomic,copy)NSString *thumbnail_pic;
+@property(nonatomic,strong)NSArray *pic_urls;
 /**
  *  微博发出时间
  */

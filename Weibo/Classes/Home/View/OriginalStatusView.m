@@ -11,6 +11,7 @@
 #import "Status.h"
 #import "CellFrame.h"
 #import "RetweetStatusView.h"
+#import "StatusImage.h"
 @interface OriginalStatusView()
 /**
  *  头像
@@ -161,9 +162,10 @@
     self.statusLable.frame = self.frameModel.statusLableFrame;
     
     //8.配图
-    if (status.thumbnail_pic) {
+    if (status.pic_urls.count) {
         self.statusImage.hidden = NO;
-        [self.statusImage sd_setImageWithURL:[NSURL URLWithString:status.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"app"]];
+        StatusImage *simage = status.pic_urls.firstObject;
+        [self.statusImage sd_setImageWithURL:[NSURL URLWithString:simage.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"app"]];
         self.statusImage.frame = self.frameModel.statusImageFrame;
     }else{
         self.statusImage.hidden = YES;

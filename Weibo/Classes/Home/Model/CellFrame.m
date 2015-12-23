@@ -54,7 +54,7 @@
     CGSize textSize = [status.text boundingRectWithSize:CGSizeMake(textMaxW, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:StatusTextFont context:nil].size;//boundingRectWithSize方法的使用
     _statusLableFrame = (CGRect){{textX,textY},textSize};
     //retweetImageFrame
-    if (status.thumbnail_pic) {
+    if (status.pic_urls.count) {  //!!!
         CGFloat statusImageX = iconViewXY;
         CGFloat statusImageY = CGRectGetMaxY(_statusLableFrame) + CellBorder;
         CGFloat statusImageWH = 70;
@@ -85,7 +85,7 @@
        // NSLog(@"%@",NSStringFromCGSize(retweetStatusSize));
         _retweetStatusFrame = (CGRect){{retweetStatusX,retweetStatusY},retweetStatusSize};
         //retweetImageFrame
-        if (status.retweeted_status.thumbnail_pic) {
+        if (status.retweeted_status.pic_urls.count) {  //!!!
             CGFloat retweetImageX = retweetStatusX;
             CGFloat retweetImageY = CGRectGetMaxY(_retweetStatusFrame) + CellBorder;
             CGFloat retweetImageWH = 70;
@@ -100,7 +100,7 @@
         //有转发的时候
         topViewH = CGRectGetMaxY(_retweetViewFrame) + CellBorder;
     }else{
-        if (status.thumbnail_pic) {//有图
+        if (status.pic_urls.count) {//!!!
             topViewH = CGRectGetMaxY(_statusImageFrame) + CellBorder;
         }else{
             topViewH = CGRectGetMaxY(_statusLableFrame) + CellBorder;
