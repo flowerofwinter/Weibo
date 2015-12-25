@@ -8,6 +8,7 @@
 
 #import "CellFrame.h"
 #import "Status.h"
+#import "ImageContainerView.h"
 @implementation CellFrame
 
 -(void)setStatus:(Status *)status{
@@ -57,8 +58,9 @@
     if (status.pic_urls.count) {  //!!!
         CGFloat statusImageX = iconViewXY;
         CGFloat statusImageY = CGRectGetMaxY(_statusLableFrame) + CellBorder;
-        CGFloat statusImageWH = 70;
-        _statusImageFrame = CGRectMake(statusImageX, statusImageY, statusImageWH, statusImageWH);
+        CGSize statusImageSize = [ImageContainerView ImageContainerViewSizeWithCount:status.pic_urls.count];
+        _statusImageFrame = (CGRect){{statusImageX,statusImageY},statusImageSize};
+        NSLog(@"%@",NSStringFromCGRect(_statusImageFrame));
     }
     //被转发微博
     if (status.retweeted_status) {
@@ -88,8 +90,9 @@
         if (status.retweeted_status.pic_urls.count) {  //!!!
             CGFloat retweetImageX = retweetStatusX;
             CGFloat retweetImageY = CGRectGetMaxY(_retweetStatusFrame) + CellBorder;
-            CGFloat retweetImageWH = 70;
-            _retweetImageFrame = CGRectMake(retweetImageX, retweetImageY, retweetImageWH, retweetImageWH);
+            CGSize retweetImageSize = [ImageContainerView ImageContainerViewSizeWithCount:status.retweeted_status.pic_urls.count];
+            _retweetImageFrame = CGRectMake(retweetImageX, retweetImageY, retweetImageSize.width, retweetImageSize.height);
+            NSLog(@"转发配图%@",NSStringFromCGRect(_retweetImageFrame));
             retweetViewH = CGRectGetMaxY(_retweetImageFrame);
         }else{
             retweetViewH = CGRectGetMaxY(_retweetStatusFrame);
