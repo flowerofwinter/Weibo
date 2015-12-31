@@ -60,7 +60,7 @@
         CGFloat statusImageY = CGRectGetMaxY(_statusLableFrame) + CellBorder;
         CGSize statusImageSize = [ImageContainerView ImageContainerViewSizeWithCount:status.pic_urls.count];
         _statusImageFrame = (CGRect){{statusImageX,statusImageY},statusImageSize};
-        NSLog(@"%@",NSStringFromCGRect(_statusImageFrame));
+//        NSLog(@"%@",NSStringFromCGRect(_statusImageFrame));
     }
     //被转发微博
     if (status.retweeted_status) {
@@ -92,7 +92,7 @@
             CGFloat retweetImageY = CGRectGetMaxY(_retweetStatusFrame) + CellBorder;
             CGSize retweetImageSize = [ImageContainerView ImageContainerViewSizeWithCount:status.retweeted_status.pic_urls.count];
             _retweetImageFrame = CGRectMake(retweetImageX, retweetImageY, retweetImageSize.width, retweetImageSize.height);
-            NSLog(@"转发配图%@",NSStringFromCGRect(_retweetImageFrame));
+//            NSLog(@"转发配图%@",NSStringFromCGRect(_retweetImageFrame));
             retweetViewH = CGRectGetMaxY(_retweetImageFrame);
         }else{
             retweetViewH = CGRectGetMaxY(_retweetStatusFrame);

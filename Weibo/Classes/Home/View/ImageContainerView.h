@@ -9,5 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface ImageContainerView : UIView
+/**
+ *  图片数组URL
+ */
+@property(nonatomic,strong)NSArray *imageArr;
+/**
+ *  输入图片的个数，返回所需View的大小
+ */
 +(CGSize)ImageContainerViewSizeWithCount:(int)count;
 @end

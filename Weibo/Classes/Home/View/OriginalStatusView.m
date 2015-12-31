@@ -12,6 +12,7 @@
 #import "CellFrame.h"
 #import "RetweetStatusView.h"
 #import "StatusImage.h"
+#import "ImageContainerView.h"
 @interface OriginalStatusView()
 /**
  *  头像
@@ -24,7 +25,7 @@
 /**
  *  微博图片
  */
-@property(nonatomic, weak)UIImageView *statusImage;
+@property(nonatomic, weak)ImageContainerView *statusImage;
 /**
  *  昵称
  */
@@ -72,7 +73,7 @@
     vipView.contentMode = UIViewContentModeCenter;
     self.vipView = vipView;
     //4.配图
-    UIImageView *statusImage = [[UIImageView alloc]init];
+    ImageContainerView *statusImage = [[ImageContainerView alloc]init];
     [self addSubview:statusImage];
     self.statusImage = statusImage;
     //5.昵称
@@ -164,8 +165,7 @@
     //8.配图
     if (status.pic_urls.count) {
         self.statusImage.hidden = NO;
-        StatusImage *simage = status.pic_urls.firstObject;
-        [self.statusImage sd_setImageWithURL:[NSURL URLWithString:simage.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"app"]];
+        self.statusImage.imageArr = status.pic_urls;
         self.statusImage.frame = self.frameModel.statusImageFrame;
     }else{
         self.statusImage.hidden = YES;
