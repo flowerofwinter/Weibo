@@ -8,6 +8,9 @@
 
 #import "ImageContainerView.h"
 #import "ImageCell.h"
+#import "MJPhotoBrowser.h"
+#import "MJPhoto.h"
+#import "StatusImage.h"
 #define ImageCellH 70
 #define ImageMargin 5
 
@@ -19,10 +22,33 @@
         for (int i = 0; i<9; i++) {
             ImageCell *imageCell = [[ImageCell alloc]init];
             imageCell.userInteractionEnabled = YES;
+            imageCell.tag = i;
+            UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(imageTap:)];
+            [imageCell addGestureRecognizer:tap];
             [self addSubview:imageCell];
         }
     }
     return self;
+}
+
+-(void)imageTap:(UITapGestureRecognizer *)recognizer{
+    int count = self.imageArr.count;
+    //1.封装图片
+    NSMutableArray *myImages = [NSMutableArray arrayWithCapacity:count];
+    for (int i = 0; i < count; i++) {
+        MJPhoto *mjphoto = [[MJPhoto alloc]init];
+        mjphoto.srcImageView = self.subviews[i];
+        StatusImage *statusimage = [[StatusImage alloc]init];
+        NSString *photoURL = [statusimage.thumbnail_pic stringByReplacingOccurrencesOfString:@"thumbnail" withString:@"bmiddle"];
+        mjphoto.url = [NSURL URLWithString:photoURL];
+        [myImages addObject:mjphoto];
+    }
+    //2.显示图片浏览器
+    MJPhotoBrowser *browser = [[MJPhotoBrowser alloc]init];
+    browser.currentPhotoIndex = recognizer.view.tag;
+    browser.photos = myImages;
+    [browser show];
+    NSLog(@"☀️");
 }
 
 -(void)setImageArr:(NSArray *)imageArr{

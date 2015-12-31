@@ -24,6 +24,7 @@
 		5A60332D1BD9C71D009502B0 /* BDNVController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A60332C1BD9C71D009502B0 /* BDNVController.m */; };
 		5A75EA241C196DC10058D425 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A75EA231C196DC10058D425 /* Status.m */; settings = {ASSET_TAGS = (); }; };
 		5A75EA271C196E620058D425 /* WeiboUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A75EA261C196E620058D425 /* WeiboUser.m */; settings = {ASSET_TAGS = (); }; };
+		5A7893141C312C7D0055E614 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7893131C312C7D0055E614 /* ImageCell.m */; settings = {ASSET_TAGS = (); }; };
 		5A8397E51BD098B50028874E /* BadgeButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A8397E41BD098B50028874E /* BadgeButton.m */; };
 		5AA138FF1BCF6C5200BA905A /* TabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AA138FE1BCF6C5200BA905A /* TabBar.m */; };
 		5AAB3D611C1AD108007577AA /* StatusCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AAB3D601C1AD108007577AA /* StatusCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -138,6 +139,8 @@
 		5A75EA231C196DC10058D425 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
 		5A75EA251C196E620058D425 /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
 		5A75EA261C196E620058D425 /* WeiboUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboUser.m; sourceTree = "<group>"; };
+		5A7893121C312C7D0055E614 /* ImageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCell.h; sourceTree = "<group>"; };
+		5A7893131C312C7D0055E614 /* ImageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCell.m; sourceTree = "<group>"; };
 		5A8397E31BD098B50028874E /* BadgeButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BadgeButton.h; sourceTree = "<group>"; };
 		5A8397E41BD098B50028874E /* BadgeButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BadgeButton.m; sourceTree = "<group>"; };
 		5AA138FD1BCF6C5200BA905A /* TabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TabBar.h; sourceTree = "<group>"; };
@@ -384,6 +387,8 @@
 				5A5CA7C41C23E8F100515E23 /* StatusTooBbar.m */,
 				5ACBA1FD1C2D5703006BEB41 /* ImageContainerView.h */,
 				5ACBA1FE1C2D5703006BEB41 /* ImageContainerView.m */,
+				5A7893121C312C7D0055E614 /* ImageCell.h */,
+				5A7893131C312C7D0055E614 /* ImageCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -920,6 +925,7 @@
 				5ABBC5B01C2217A1008432E7 /* MKAnnotationView+WebCache.m in Sources */,
 				5AD748EF1C181E2E009EDB43 /* Account.m in Sources */,
 				5AC782411BE82B9C002B31C6 /* TitleButton.m in Sources */,
+				5A7893141C312C7D0055E614 /* ImageCell.m in Sources */,
 				5ABBC5BC1C2217A1008432E7 /* UIImage+WebP.m in Sources */,
 				5ABBC5AA1C2217A1008432E7 /* MJMethod.m in Sources */,
 				5ABBC5B21C2217A1008432E7 /* SDImageCache.m in Sources */,

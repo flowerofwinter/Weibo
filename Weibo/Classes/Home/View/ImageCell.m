@@ -27,7 +27,7 @@
 
 -(void)setStatusImage:(StatusImage *)statusImage{
     _statusImage = statusImage;
-    self.gifView.hidden = ![statusImage.thumbnail_pic hasPrefix:@"gif"];
+    self.gifView.hidden = ![statusImage.thumbnail_pic hasSuffix:@"gif"];
     [self sd_setImageWithURL:[NSURL URLWithString:statusImage.thumbnail_pic] placeholderImage:[UIImage imageNamed:@"timeline_image_placeholder"]];
 }
 
