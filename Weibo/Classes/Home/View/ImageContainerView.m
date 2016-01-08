@@ -48,7 +48,6 @@
     browser.currentPhotoIndex = recognizer.view.tag;
     browser.photos = myImages;
     [browser show];
-    NSLog(@"☀️");
 }
 
 -(void)setImageArr:(NSArray *)imageArr{

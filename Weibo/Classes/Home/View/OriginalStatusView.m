@@ -51,6 +51,7 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
+        self.userInteractionEnabled = YES;
         self.image = [UIImage resizeImageWithName:@"timeline_card_top_background"];
         self.highlightedImage = [UIImage resizeImageWithName:@"timeline_card_top_background_highlighted"];
         [self setupSubView];

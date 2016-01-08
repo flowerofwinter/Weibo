@@ -28,6 +28,7 @@
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
+        self.userInteractionEnabled = YES;
         self.image = [UIImage resizeImageWithName:@"timeline_retweet_background" left:0.9 top:0.5];
         
         //1.昵称
