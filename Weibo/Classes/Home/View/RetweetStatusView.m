@@ -7,7 +7,7 @@
 //
 
 #import "RetweetStatusView.h"
-
+#import "ImageContainerView.h"
 #import "StatusImage.h"
 #import "UIImageView+WebCache.h"
 @interface RetweetStatusView ()
@@ -22,12 +22,13 @@
 /**
  *  被转发的微博图片
  */
-@property(nonatomic, weak)UIImageView *retweetImage;
+@property(nonatomic, weak)ImageContainerView *retweetImage;
 @end
 @implementation RetweetStatusView
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
+        self.userInteractionEnabled = YES;
         self.image = [UIImage resizeImageWithName:@"timeline_retweet_background" left:0.9 top:0.5];
         
         //1.昵称
@@ -47,7 +48,7 @@
         self.retweetStatus = retweetStatus;
         
         //3.配图
-        UIImageView *retweetImage = [[UIImageView alloc]init];
+        ImageContainerView *retweetImage = [[ImageContainerView alloc]init];
         [self addSubview:retweetImage];
         self.retweetImage = retweetImage;
     }
@@ -67,8 +68,7 @@
     //3.配图
     if (retweetedstatus.pic_urls.count) {
         self.retweetImage.hidden = NO;
-        StatusImage *simage = retweetedstatus.pic_urls.firstObject;
-        [self.retweetImage sd_setImageWithURL:[NSURL URLWithString:simage.thumbnail_pic] placeholderImage:[UIImage imageWithName:@"app"]];
+        self.retweetImage.imageArr = retweetedstatus.pic_urls;
         self.retweetImage.frame = self.retweetData.retweetImageFrame;
     }else{
         self.retweetImage.hidden = YES;
