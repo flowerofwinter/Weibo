@@ -123,7 +123,7 @@
     tbtn.tag = tBtnDowntag;
     self.navigationItem.titleView = tbtn;
     
-    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, CellWidth, 0);
+//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, CellWidth, 0);
     self.tableView.backgroundColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.89f alpha:1.00f];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//cell分割线隐藏
 }
