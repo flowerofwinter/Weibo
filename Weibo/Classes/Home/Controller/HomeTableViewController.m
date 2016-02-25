@@ -93,8 +93,49 @@
         [self.tableView reloadData];
         //转轮停止刷新
         [refreshControl endRefreshing];
+        //界面友好，给用户以提示，刷新的效果
+        [self showNewStatusCount:statusFrameArray.count];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         [refreshControl endRefreshing];
+    }];
+}
+
+/**
+ *  显示刷新出来的微博的数量
+ *
+ *  @param count 新微博的数量
+ */
+-(void)showNewStatusCount:(int)count{
+    //1.创建按钮
+    UIButton *btn = [[UIButton alloc]init];
+    //belowSubview涨姿势
+    [self.navigationController.view insertSubview:btn belowSubview:self.navigationController.navigationBar];
+    btn.userInteractionEnabled = NO;
+    [btn setBackgroundImage:[UIImage resizeImageWithName:@"timeline_new_status_background"] forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+    btn.titleLabel.font = [UIFont systemFontOfSize:14];
+    if (count) {
+        NSString *title = [NSString stringWithFormat:@"共有%d条新的微博",count];
+        [btn setTitle:title forState:UIControlStateNormal];
+    }else{
+        [btn setTitle:@"没有新微博" forState:UIControlStateNormal];
+    }
+    //设置按钮的初始frame
+    CGFloat btnH = 30;
+    CGFloat btnY = 64 - btnH;
+    CGFloat btnW = self.view.frame.size.width;
+    CGFloat btnX = 0;
+    btn.frame = CGRectMake(btnX, btnY, btnW, btnH);
+    //通过动画向下移动btnH+1的距离
+    [UIView animateWithDuration:1.0 animations:^{
+        btn.transform = CGAffineTransformMakeTranslation(0, btnH+1);
+    }completion:^(BOOL finished) {
+        [UIView animateKeyframesWithDuration:1.0 delay:1.0 options:UIViewKeyframeAnimationOptionCalculationModeLinear animations:^{//执行返回的动画(清空transform)
+            btn.transform = CGAffineTransformIdentity;
+        } completion:^(BOOL finished) {//将btn从内存中移除
+            [btn removeFromSuperview]; //不清空亦可。因为是局部变量
+//            btn = nil;  block当中是不能对外部的变量修改的
+        }];
     }];
 }
 
