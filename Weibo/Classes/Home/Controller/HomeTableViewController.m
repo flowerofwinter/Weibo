@@ -22,17 +22,80 @@
 #define tBtnDowntag 0
 #define tBtnUptag -1
 @interface HomeTableViewController ()
-@property(nonatomic,strong)NSArray *statusFrame;
+@property(nonatomic,strong)NSMutableArray *statusFrame;
 @end
 
 @implementation HomeTableViewController
 
+-(NSMutableArray *)statusFrame{
+    if (_statusFrame == nil) {
+        _statusFrame = [NSMutableArray array];
+    }return _statusFrame;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self setupRefreshView];
     //设置导航栏
     [self setupNavBar];
     //加载微博数据
-    [self setupStatusData];
+//    [self setupStatusData];
+}
+
+-(void)setupRefreshView{
+    UIRefreshControl *RefreshControl = [[UIRefreshControl alloc]init];
+    //监听刷新控件的状态是否改变了
+    [RefreshControl addTarget:self action:@selector(refreshControlStateChange:) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:RefreshControl];
+    //自动刷新不会触发监听事件
+    [RefreshControl beginRefreshing];
+    [self refreshControlStateChange:RefreshControl];
+}
+
+-(void)refreshControlStateChange:(UIRefreshControl *)refreshControl{
+//    NSLog(@"说明了状态已经发生改变");
+    //创建请求管理对象
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    //封装请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = [AccountTool Account].access_token;
+    params[@"count"] = @5;
+    if (self.statusFrame.count) {
+        CellFrame *cellframe = self.statusFrame[0];
+        //要加载ID比sinceID还大的
+        params[@"since_id"] = cellframe.status.idstr;
+    }
+    //发送请求
+    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //        NSMutableArray *statusArray = [NSMutableArray array];
+        //        for (NSDictionary *dict in dictArray) {
+        //            Status *status = [Status objectWithKeyValues:dict];
+        //            [statusArray addObject:status];
+        //        }
+        //        self.statuses = statusArray;
+        
+        //        NSArray *dictArray = responseObject[@"statuses"];
+        //        self.statuses = [Status objectArrayWithKeyValuesArray:dictArray];
+        NSArray *statusArray = [Status objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        NSMutableArray *statusFrameArray = [NSMutableArray array];
+        for (Status *status in statusArray) {
+            CellFrame *cellFrame = [[CellFrame alloc]init];
+            cellFrame.status = status;
+            [statusFrameArray addObject:cellFrame];
+        }
+        //将最新的数据追加到旧数据的最前面
+        //旧数据:self.statusFrames
+        //新数据:statusFrameArray
+        NSMutableArray *tempArray = [NSMutableArray array];
+        [tempArray addObjectsFromArray:statusFrameArray];
+        [tempArray addObjectsFromArray:self.statusFrame];
+        self.statusFrame = tempArray;
+        [self.tableView reloadData];
+        //转轮停止刷新
+        [refreshControl endRefreshing];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [refreshControl endRefreshing];
+    }];
 }
 
 -(void)setupNavBar{
@@ -64,15 +127,16 @@
     self.tableView.backgroundColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.89f alpha:1.00f];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//cell分割线隐藏
 }
-
+/*
 -(void)setupStatusData{
     //创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     //封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [AccountTool Account].access_token;
-    //params[@"count"] = @50;
+    //params[@"count"] = @5;  //请求个数的参数没注意竟然被屏蔽了，不过没有影响，默认的是20条；
     //发送请求
+
     [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
 //        NSMutableArray *statusArray = [NSMutableArray array];
 //        for (NSDictionary *dict in dictArray) {
@@ -99,7 +163,7 @@
 
     }];
 }
-
+*/
 -(void)titleClick:(TitleButton *)button{
     if (button.tag == tBtnDowntag) {
         [button setImage:[UIImage imageWithName:@"navigationbar_arrow_up"] forState:UIControlStateNormal];
