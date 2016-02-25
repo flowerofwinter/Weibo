@@ -36,7 +36,7 @@
         //设置背景图片
         self.userInteractionEnabled = YES;
         self.image = [UIImage resizeImageWithName:@"timeline_card_bottom_background"];
-        self.highlightedImage = [UIImage imageNamed:@"timeline_card_bottom_background_highlighted"];
+        self.highlightedImage = [UIImage imageWithName:@"timeline_card_bottom_background_highlighted"];
         
         //添加按钮
         self.reweetBtn = [self setupBtnWithTitle:@"转发" image:@"timeline_icon_retweet" bgImage:@"timeline_card_leftbottom_highlighted"];

@@ -62,6 +62,7 @@
     
     self.tableView.contentInset = UIEdgeInsetsMake(0, 0, CellWidth, 0);
     self.tableView.backgroundColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.89f alpha:1.00f];
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//cell分割线隐藏
 }
 
 -(void)setupStatusData{
@@ -82,7 +83,6 @@
         
 //        NSArray *dictArray = responseObject[@"statuses"];
 //        self.statuses = [Status objectArrayWithKeyValuesArray:dictArray];
-        
         NSArray *statusArray = [Status objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         NSMutableArray *statusFrameArray = [NSMutableArray array];
         for (Status *status in statusArray) {
