@@ -193,6 +193,7 @@
 		5A7242391C800B2E00083B77 /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		5A72423A1C800B2E00083B77 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		5A72423B1C800B2E00083B77 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		5A72424F1C8053E900083B77 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		5A75EA221C196DC10058D425 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
 		5A75EA231C196DC10058D425 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
 		5A75EA251C196E620058D425 /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
@@ -569,6 +570,7 @@
 				5A3E75731BCF146000D9369F /* main.m */,
 				5AD749111C1837FE009EDB43 /* WeiboTool.h */,
 				5AD749121C1837FE009EDB43 /* WeiboTool.m */,
+				5A72424F1C8053E900083B77 /* Common.h */,
 			);
 			path = Other;
 			sourceTree = "<group>";

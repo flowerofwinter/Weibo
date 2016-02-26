@@ -11,8 +11,7 @@
 #import "MJPhotoBrowser.h"
 #import "MJPhoto.h"
 #import "StatusImage.h"
-#define ImageCellH 70
-#define ImageMargin 5
+
 
 @implementation ImageContainerView
 

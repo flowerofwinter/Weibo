@@ -27,7 +27,8 @@
     webview.delegate = self;
     [self.view addSubview:webview];
     //2、打开webview
-    NSURL *url = [NSURL URLWithString:@"https://api.weibo.com/oauth2/authorize?client_id=944083771&redirect_uri=http://www.baidu.com"];
+    NSString *urlStr = [NSString stringWithFormat:@"https://api.weibo.com/oauth2/authorize?client_id=%@&redirect_uri=%@",AppKey,RedirectURI];
+    NSURL *url = [NSURL URLWithString:urlStr];
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
     [webview loadRequest:request];
     //3、设置根控制器为webview
@@ -53,6 +54,7 @@
         NSString *code = [str substringFromIndex:loc];
         NSLog(@"%@",code);
         [self accountWithCode:code];
+        return NO;//若无这一行，在网速卡的时候就会在第一次登陆的时候先显示回调的百度页面，因为afn的异步线程限于网速慢，还没有执行完毕，这里已经结束了，执行了下一句return yes
     }
     return YES;
 }
@@ -60,11 +62,11 @@
 -(void)accountWithCode:(NSString *)code{
     
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"client_id"] = @"944083771";
-    params[@"client_secret"] = @"588d0a822123a9b13c5f7482eea335ed";
+    params[@"client_id"] = AppKey;
+    params[@"client_secret"] = AppSecret;
     params[@"grant_type"] = @"authorization_code";
     params[@"code"] = code;
-    params[@"redirect_uri"] = @"http://www.baidu.com";
+    params[@"redirect_uri"] = RedirectURI;
     
     
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
