@@ -19,6 +19,7 @@
 #import "CellFrame.h"
 #import "StatusCell.h"
 #import "StatusImage.h"
+#import "MJRefresh.h"
 #define tBtnDowntag 0
 #define tBtnUptag -1
 @interface HomeTableViewController ()
@@ -46,6 +47,8 @@
 }
 
 -(void)setupRefreshView{
+    //上拉刷新
+    
     UIRefreshControl *RefreshControl = [[UIRefreshControl alloc]init];
     //监听刷新控件的状态是否改变了
     [RefreshControl addTarget:self action:@selector(refreshControlStateChange:) forControlEvents:UIControlEventValueChanged];
@@ -53,6 +56,36 @@
     //自动刷新不会触发监听事件
     [RefreshControl beginRefreshing];
     [self refreshControlStateChange:RefreshControl];
+    
+    
+    //下拉刷新
+    self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
+        //发送请求，取得之前的数据
+        AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+        NSMutableDictionary *params = [NSMutableDictionary dictionary];
+        params[@"access_token"] = [AccountTool Account].access_token;
+        params[@"count"] = @5;
+        if (self.statusFrame.count) {
+            CellFrame *cellFrame = [self.statusFrame lastObject];
+            long long maxID = [cellFrame.status.idstr longLongValue] - 1;
+            params[@"max_id"] = @(maxID);
+        }
+        [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSArray *statusArray = [Status objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+            NSMutableArray *statusFrameArray = [NSMutableArray array];
+            for (Status *status in statusArray) {
+                CellFrame *cellframe = [[CellFrame alloc]init]; //强制类型转换
+                cellframe.status = status;
+                [statusFrameArray addObject:cellframe];
+            }
+            //添加到旧数据后面
+            [self.statusFrame addObjectsFromArray:statusFrameArray];
+            [self.tableView reloadData];
+            [self.tableView.mj_footer endRefreshing];
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            [self.tableView.mj_footer endRefreshing];
+        }];
+    }];
 }
 
 -(void)getUserInfo{
