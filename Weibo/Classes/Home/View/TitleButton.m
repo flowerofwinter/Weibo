@@ -7,7 +7,7 @@
 //
 
 #import "TitleButton.h"
-#define imagew 40
+#define imagew 20
 @implementation TitleButton
 +(instancetype)titleButton{
     return [[self alloc]init];
@@ -42,6 +42,16 @@
     CGFloat titleX = 0;
     CGFloat titleH = contentRect.size.height;
     return CGRectMake(titleX, titleY, titleW, titleH);
+}
+
+-(void)setTitle:(NSString *)title forState:(UIControlState)state{
+    NSDictionary * attributes = @{NSFontAttributeName: self.titleLabel.font}; //
+    CGFloat titleW = [title sizeWithAttributes:attributes].width;
+    CGRect frame = self.frame;
+    frame.size.width = titleW + imagew +5;
+    self.frame = frame;
+    
+    [super setTitle:title forState:state];
 }
 
 @end

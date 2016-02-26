@@ -14,7 +14,10 @@
 @property(nonatomic,assign)long long expires_in;
 @property(nonatomic,assign)long long remind_in;
 @property(nonatomic,assign)long long uid;
-
+/**
+ *  用户的昵称
+ */
+@property(nonatomic,copy)NSString *name;
 -(instancetype)initWIthDict:(NSDictionary *)dict;
 +(instancetype)accountWithDict:(NSDictionary *)dict;
 

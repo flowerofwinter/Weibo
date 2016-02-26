@@ -23,6 +23,7 @@
 #define tBtnUptag -1
 @interface HomeTableViewController ()
 @property(nonatomic,strong)NSMutableArray *statusFrame;
+@property(nonatomic, weak)UIButton *topBtn;
 @end
 
 @implementation HomeTableViewController
@@ -40,6 +41,8 @@
     [self setupNavBar];
     //加载微博数据
 //    [self setupStatusData];
+    //获取用户信息
+    [self getUserInfo];
 }
 
 -(void)setupRefreshView{
@@ -50,6 +53,26 @@
     //自动刷新不会触发监听事件
     [RefreshControl beginRefreshing];
     [self refreshControlStateChange:RefreshControl];
+}
+
+-(void)getUserInfo{
+    //创建请求管理对象
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    //封装请求参数
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = [AccountTool Account].access_token;
+    params[@"uid"] = @([AccountTool Account].uid);//不注意就错了，数字不是对象
+    //发送请求
+    [mgr GET:@"https://api.weibo.com/2/users/show.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        WeiboUser *usr = [WeiboUser objectWithKeyValues:responseObject];
+        [self.topBtn setTitle:usr.name forState:UIControlStateNormal];
+        //保存账号昵称
+        Account *account = [AccountTool Account];
+        account.name = usr.name;
+        [AccountTool saveAccount:account];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+    }];
 }
 
 -(void)refreshControlStateChange:(UIRefreshControl *)refreshControl{
@@ -156,13 +179,19 @@
     TitleButton *tbtn = [[TitleButton alloc]init];
     //设置图标
     [tbtn setImage:[UIImage imageWithName:@"navigationbar_arrow_down"] forState:UIControlStateNormal];
+    //位置和尺寸(必须放在设置文字之前，因为宽度是零，下面的重写的settitle方法可以根据文字计算宽度)
+    tbtn.frame = CGRectMake(0, 0, 0, 30);
     //设置文字
-    [tbtn setTitle:@"点击" forState:UIControlStateNormal];
-    //位置和尺寸
-    tbtn.frame = CGRectMake(0, 0, 100, 30);
+    if ([AccountTool Account].name) {
+        [tbtn setTitle:[AccountTool Account].name forState:UIControlStateNormal];
+    }else{
+      [tbtn setTitle:@"点击" forState:UIControlStateNormal];
+    }
+    
     [tbtn addTarget:self action:@selector(titleClick:) forControlEvents:UIControlEventTouchUpInside];
     tbtn.tag = tBtnDowntag;
     self.navigationItem.titleView = tbtn;
+    self.topBtn = tbtn;
     
 //    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, CellWidth, 0);
     self.tableView.backgroundColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.89f alpha:1.00f];
