@@ -14,6 +14,7 @@
 #import "UIImage+BD.h"
 #import "TabBar.h"
 #import "BDNVController.h"
+#import "ComposeViewController.h"
 @interface TabBarViewController ()<TabBarDelegate>
 @property(nonatomic,weak)TabBar *customTabbar;
 @end
@@ -115,6 +116,24 @@
     }
 }
 
+/**
+ *  tabbar代理方法，发微博
+ *
+ *  @param tabBar 相关tabbar
+ */
+-(void)tabBarDidClickedPlusButton:(TabBar *)tabBar{
+    ComposeViewController *composerVC = [[ComposeViewController alloc]init];
+    BDNVController *nav = [[BDNVController alloc]initWithRootViewController:composerVC];
+    [self presentViewController:nav animated:YES completion:nil];
+}
+
+/**
+ *  tabBar代理方法
+ *
+ *  @param tabBar 相关tabbar
+ *  @param from   从一个item
+ *  @param to     到另一个item
+ */
 -(void)tabBar:(TabBar *)tabBar didSelectedButton:(int)from to:(int)to{
     self.selectedIndex = to;
 }

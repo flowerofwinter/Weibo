@@ -11,6 +11,7 @@
 @protocol TabBarDelegate<NSObject>
 @optional
 -(void)tabBar:(TabBar *)tabBar didSelectedButton:(int)from to:(int)to;
+-(void)tabBarDidClickedPlusButton:(TabBar *)tabBar;
 @end
 @interface TabBar : UIView
 -(void)addTabBarButtonWithItem:(UITabBarItem *)item;

@@ -41,6 +41,7 @@
 		5A72424C1C800B2E00083B77 /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7242371C800B2E00083B77 /* UIScrollView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
 		5A72424D1C800B2E00083B77 /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7242391C800B2E00083B77 /* UIScrollView+MJRefresh.m */; settings = {ASSET_TAGS = (); }; };
 		5A72424E1C800B2E00083B77 /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A72423B1C800B2E00083B77 /* UIView+MJExtension.m */; settings = {ASSET_TAGS = (); }; };
+		5A7242571C8101E300083B77 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7242561C8101E300083B77 /* ComposeViewController.m */; settings = {ASSET_TAGS = (); }; };
 		5A75EA241C196DC10058D425 /* Status.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A75EA231C196DC10058D425 /* Status.m */; settings = {ASSET_TAGS = (); }; };
 		5A75EA271C196E620058D425 /* WeiboUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A75EA261C196E620058D425 /* WeiboUser.m */; settings = {ASSET_TAGS = (); }; };
 		5A7893141C312C7D0055E614 /* ImageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5A7893131C312C7D0055E614 /* ImageCell.m */; settings = {ASSET_TAGS = (); }; };
@@ -194,6 +195,8 @@
 		5A72423A1C800B2E00083B77 /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		5A72423B1C800B2E00083B77 /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
 		5A72424F1C8053E900083B77 /* Common.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		5A7242551C8101E300083B77 /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		5A7242561C8101E300083B77 /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
 		5A75EA221C196DC10058D425 /* Status.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Status.h; sourceTree = "<group>"; };
 		5A75EA231C196DC10058D425 /* Status.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Status.m; sourceTree = "<group>"; };
 		5A75EA251C196E620058D425 /* WeiboUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeiboUser.h; sourceTree = "<group>"; };
@@ -350,6 +353,7 @@
 		5A3E75511BCF146000D9369F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				5A7242501C81013500083B77 /* Compose */,
 				5AB08DAF1C1512ED00A0D137 /* OAuth */,
 				5AC782421BE861AC002B31C6 /* NewVersionFeature */,
 				5A3E75521BCF146000D9369F /* Discover */,
@@ -730,6 +734,23 @@
 				5A7242311C800B2E00083B77 /* MJRefreshStateHeader.m */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		5A7242501C81013500083B77 /* Compose */ = {
+			isa = PBXGroup;
+			children = (
+				5A7242511C81013500083B77 /* Controller */,
+			);
+			path = Compose;
+			sourceTree = "<group>";
+		};
+		5A7242511C81013500083B77 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				5A7242551C8101E300083B77 /* ComposeViewController.h */,
+				5A7242561C8101E300083B77 /* ComposeViewController.m */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		5AB08DAF1C1512ED00A0D137 /* OAuth */ = {
@@ -1138,6 +1159,7 @@
 				5A72424E1C800B2E00083B77 /* UIView+MJExtension.m in Sources */,
 				5A60332D1BD9C71D009502B0 /* BDNVController.m in Sources */,
 				5ABBC5BE1C2217A1008432E7 /* UIImageView+WebCache.m in Sources */,
+				5A7242571C8101E300083B77 /* ComposeViewController.m in Sources */,
 				5A3E757A1BCF146000D9369F /* main.m in Sources */,
 				5ABBC5BF1C2217A1008432E7 /* UIView+WebCacheOperation.m in Sources */,
 				5ABBC5A71C2217A1008432E7 /* MJArgument.m in Sources */,
