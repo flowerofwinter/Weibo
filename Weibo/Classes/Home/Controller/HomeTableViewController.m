@@ -48,7 +48,7 @@
 
 -(void)setupRefreshView{
     //上拉刷新
-    
+    /* 系统自带刷新控件
     UIRefreshControl *RefreshControl = [[UIRefreshControl alloc]init];
     //监听刷新控件的状态是否改变了
     [RefreshControl addTarget:self action:@selector(refreshControlStateChange:) forControlEvents:UIControlEventValueChanged];
@@ -56,35 +56,14 @@
     //自动刷新不会触发监听事件
     [RefreshControl beginRefreshing];
     [self refreshControlStateChange:RefreshControl];
-    
-    
+    */
+    [self headerRefresh];
+    self.tableView.mj_header = [MJRefreshStateHeader headerWithRefreshingBlock:^{
+        [self headerRefresh];
+    }];
     //下拉刷新
     self.tableView.mj_footer = [MJRefreshBackStateFooter footerWithRefreshingBlock:^{
-        //发送请求，取得之前的数据
-        AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
-        NSMutableDictionary *params = [NSMutableDictionary dictionary];
-        params[@"access_token"] = [AccountTool Account].access_token;
-        params[@"count"] = @5;
-        if (self.statusFrame.count) {
-            CellFrame *cellFrame = [self.statusFrame lastObject];
-            long long maxID = [cellFrame.status.idstr longLongValue] - 1;
-            params[@"max_id"] = @(maxID);
-        }
-        [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-            NSArray *statusArray = [Status objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
-            NSMutableArray *statusFrameArray = [NSMutableArray array];
-            for (Status *status in statusArray) {
-                CellFrame *cellframe = [[CellFrame alloc]init]; //强制类型转换
-                cellframe.status = status;
-                [statusFrameArray addObject:cellframe];
-            }
-            //添加到旧数据后面
-            [self.statusFrame addObjectsFromArray:statusFrameArray];
-            [self.tableView reloadData];
-            [self.tableView.mj_footer endRefreshing];
-        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-            [self.tableView.mj_footer endRefreshing];
-        }];
+        [self footerRefresh];
     }];
 }
 
@@ -108,7 +87,7 @@
     }];
 }
 
--(void)refreshControlStateChange:(UIRefreshControl *)refreshControl{
+-(void)headerRefresh{
 //    NSLog(@"说明了状态已经发生改变");
     //创建请求管理对象
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
@@ -123,15 +102,6 @@
     }
     //发送请求
     [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        //        NSMutableArray *statusArray = [NSMutableArray array];
-        //        for (NSDictionary *dict in dictArray) {
-        //            Status *status = [Status objectWithKeyValues:dict];
-        //            [statusArray addObject:status];
-        //        }
-        //        self.statuses = statusArray;
-        
-        //        NSArray *dictArray = responseObject[@"statuses"];
-        //        self.statuses = [Status objectArrayWithKeyValuesArray:dictArray];
         NSArray *statusArray = [Status objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         NSMutableArray *statusFrameArray = [NSMutableArray array];
         for (Status *status in statusArray) {
@@ -148,11 +118,40 @@
         self.statusFrame = tempArray;
         [self.tableView reloadData];
         //转轮停止刷新
-        [refreshControl endRefreshing];
+       // [refreshControl endRefreshing];
+        [self.tableView.mj_header endRefreshing];
         //界面友好，给用户以提示，刷新的效果
         [self showNewStatusCount:statusFrameArray.count];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        [refreshControl endRefreshing];
+        [self.tableView.mj_header endRefreshing];
+    }];
+}
+
+-(void)footerRefresh{
+    //发送请求，取得之前的数据
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"access_token"] = [AccountTool Account].access_token;
+    params[@"count"] = @5;
+    if (self.statusFrame.count) {
+        CellFrame *cellFrame = [self.statusFrame lastObject];
+        long long maxID = [cellFrame.status.idstr longLongValue] - 1;
+        params[@"max_id"] = @(maxID);
+    }
+    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        NSArray *statusArray = [Status objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+        NSMutableArray *statusFrameArray = [NSMutableArray array];
+        for (Status *status in statusArray) {
+            CellFrame *cellframe = [[CellFrame alloc]init]; //强制类型转换
+            cellframe.status = status;
+            [statusFrameArray addObject:cellframe];
+        }
+        //添加到旧数据后面
+        [self.statusFrame addObjectsFromArray:statusFrameArray];
+        [self.tableView reloadData];
+        [self.tableView.mj_footer endRefreshing];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [self.tableView.mj_footer endRefreshing];
     }];
 }
 
@@ -226,7 +225,7 @@
     self.navigationItem.titleView = tbtn;
     self.topBtn = tbtn;
     
-//    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, CellWidth, 0);
+    self.tableView.contentInset = UIEdgeInsetsMake(0, 0, CellWidth, 0);
     self.tableView.backgroundColor = [UIColor colorWithRed:0.89f green:0.89f blue:0.89f alpha:1.00f];
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;//cell分割线隐藏
 }
