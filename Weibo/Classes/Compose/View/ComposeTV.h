@@ -15,4 +15,5 @@
 @interface ComposeTV : UITextView
 //@property(nonatomic, weak)UILabel *placeholderLable;
 @property(nonatomic,copy)NSString *placeholder;
+@property(nonatomic,strong)UIColor *placeholdercolor;
 @end

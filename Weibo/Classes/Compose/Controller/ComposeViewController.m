@@ -39,7 +39,7 @@
     ComposeTV *composeView = [[ComposeTV alloc]init];
     composeView.font = [UIFont systemFontOfSize:15];
     composeView.frame = self.view.bounds;//这样设置，输入光标应该在左上角，实则不是，why，textview继承自scrollview，contentInset有额外的长度为64的区域
-    composeView.placeholder = @"分享新鲜事……分享新鲜事……分享新鲜事……分享新鲜事……分享新鲜事……分享新鲜事……";
+    composeView.placeholder = @"分享新鲜事……";
     [self.view addSubview:composeView];
     
     self.composeView = composeView;
@@ -58,6 +58,9 @@
 }
 
 -(void)cancel{
+//    self.composeView.placeholder = @"欢迎再来";
+//    self.composeView.placeholdercolor = [UIColor redColor];
+//    self.composeView.font = [UIFont systemFontOfSize:30];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
