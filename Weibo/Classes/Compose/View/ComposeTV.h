@@ -13,5 +13,6 @@
 #import <UIKit/UIKit.h>
 
 @interface ComposeTV : UITextView
-
+//@property(nonatomic, weak)UILabel *placeholderLable;
+@property(nonatomic,copy)NSString *placeholder;
 @end

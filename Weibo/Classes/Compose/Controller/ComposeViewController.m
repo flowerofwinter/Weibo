@@ -8,6 +8,10 @@
 
 #import "ComposeViewController.h"
 #import "ComposeTV.h"
+#import "AFNetworking.h"
+#import "Account.h"
+#import "AccountTool.h"
+#import "MBProgressHUD+MJ.h"
 @interface ComposeViewController ()
 @property(nonatomic, weak)ComposeTV *composeView;
 @end
@@ -35,11 +39,17 @@
     ComposeTV *composeView = [[ComposeTV alloc]init];
     composeView.font = [UIFont systemFontOfSize:15];
     composeView.frame = self.view.bounds;//这样设置，输入光标应该在左上角，实则不是，why，textview继承自scrollview，contentInset有额外的长度为64的区域
+    composeView.placeholder = @"分享新鲜事……分享新鲜事……分享新鲜事……分享新鲜事……分享新鲜事……分享新鲜事……";
     [self.view addSubview:composeView];
-    [composeView becomeFirstResponder];
+    
     self.composeView = composeView;
     //添加监听事件
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:composeView];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    [self.composeView becomeFirstResponder];
 }
 
 -(void)textDidChange{
@@ -52,7 +62,17 @@
 }
 
 -(void)send{
-    NSLog(@"☀️");
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"status"] = self.composeView.text;
+    params[@"access_token"] = [AccountTool Account].access_token;
+    [mgr POST:@"https://api.weibo.com/2/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [MBProgressHUD showSuccess:@"发送成功"];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD showError:@"发送失败"];
+    }];
+    //关闭控制器
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 -(void)dealloc{
