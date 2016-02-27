@@ -13,6 +13,7 @@
 #import "AccountTool.h"
 #import "Account.h"
 #import "WeiboTool.h"
+#import "SDWebImageManager.h"
 @interface AppDelegate ()
 
 @end
@@ -60,4 +61,9 @@
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
 
+- (void)applicationDidReceiveMemoryWarning:(UIApplication *)application{
+    [[SDWebImageManager sharedManager].imageCache clearMemory];//清除内存当中的图片
+    [[SDWebImageManager sharedManager]cancelAll];//停止下载图片
+    
+}
 @end

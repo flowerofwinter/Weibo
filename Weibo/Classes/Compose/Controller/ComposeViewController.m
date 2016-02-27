@@ -36,6 +36,7 @@
     composeView.font = [UIFont systemFontOfSize:15];
     composeView.frame = self.view.bounds;//这样设置，输入光标应该在左上角，实则不是，why，textview继承自scrollview，contentInset有额外的长度为64的区域
     [self.view addSubview:composeView];
+    [composeView becomeFirstResponder];
     self.composeView = composeView;
     //添加监听事件
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(textDidChange) name:UITextViewTextDidChangeNotification object:composeView];
@@ -54,14 +55,8 @@
     NSLog(@"☀️");
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
-*/
 
 @end
