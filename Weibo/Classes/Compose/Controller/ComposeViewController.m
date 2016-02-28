@@ -166,7 +166,7 @@
 }
 
 -(void)send{
-    if (self.imageview.image) {
+    if (self.imagesView.totalImages.count) {
         [self sendWithImage];
     }else{
         [self sendWithoutImage];
@@ -180,9 +180,15 @@
     params[@"status"] = self.composeView.text;
     params[@"access_token"] = [AccountTool Account].access_token;
     [mgr POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        for (UIImage *image in self.imagesView.subviews) {
+//        for (UIImage *image in self.imagesView.subviews) {
+//            NSData *data = UIImageJPEGRepresentation(image, 0.5);
+//            [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/png"];
+//        }
+        NSArray *images = [self.imagesView totalImages];
+        for (UIImage *image in images) {
             NSData *data = UIImageJPEGRepresentation(image, 0.5);
-            [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/png"];
+            [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/jpeg"];
+            NSLog(@"%@",image);
         }
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MBProgressHUD showSuccess:@"发送成功"];

@@ -35,7 +35,7 @@
 -(void)setupAllChildViewController{
    
     HomeTableViewController *home = [[HomeTableViewController alloc]init];
-    home.tabBarItem.badgeValue = @"100";
+//    home.tabBarItem.badgeValue = @"10";
  //   home.view.backgroundColor = [UIColor redColor];
     [self setupChildViewCotroller:home title:@"首页" imageName:@"tabbar_home" selectedImageName:@"tabbar_home_selected"];
     /*
@@ -48,7 +48,7 @@
      [self addChildViewController:homeNav];
      */
     MessageTableViewController *message = [[MessageTableViewController alloc]init];
-    message.tabBarItem.badgeValue = @"10";
+//    message.tabBarItem.badgeValue = @"2";
  //   message.view.backgroundColor = [UIColor redColor];
     [self setupChildViewCotroller:message title:@"消息" imageName:@"tabbar_message_center" selectedImageName:@"tabbar_message_center_selected"];
     /*
@@ -58,7 +58,7 @@
      [self addChildViewController:message];
      */
     DiscoverTableViewController *discover = [[DiscoverTableViewController alloc]init];
-    discover.tabBarItem.badgeValue = @"12";
+//    discover.tabBarItem.badgeValue = @"3";
  //   discover.view.backgroundColor = [UIColor redColor];
     [self setupChildViewCotroller:discover title:@"广场" imageName:@"tabbar_discover" selectedImageName:@"tabbar_discover_selected"];
     /*
@@ -68,7 +68,7 @@
      [self addChildViewController:discover];
      */
     MeTableViewController *me = [[MeTableViewController alloc]init];
-    me.tabBarItem.badgeValue = @"2";
+//    me.tabBarItem.badgeValue = @"4";
 //    me.view.backgroundColor = [UIColor redColor];
     [self setupChildViewCotroller:me title:@"自己" imageName:@"tabbar_profile" selectedImageName:@"tabbar_profile_selected"];
     /*
