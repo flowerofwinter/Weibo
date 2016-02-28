@@ -109,6 +109,7 @@
 		5AD748F21C181E46009EDB43 /* AccountTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD748F11C181E46009EDB43 /* AccountTool.m */; settings = {ASSET_TAGS = (); }; };
 		5AD749131C1837FE009EDB43 /* WeiboTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AD749121C1837FE009EDB43 /* WeiboTool.m */; settings = {ASSET_TAGS = (); }; };
 		5AF0A2DF1C8273760009A123 /* ComposeToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF0A2DE1C8273760009A123 /* ComposeToolBar.m */; settings = {ASSET_TAGS = (); }; };
+		5AF6E37B1C82F89800500522 /* ComposeMuImages.m in Sources */ = {isa = PBXBuildFile; fileRef = 5AF6E37A1C82F89800500522 /* ComposeMuImages.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -327,6 +328,8 @@
 		5AD749121C1837FE009EDB43 /* WeiboTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeiboTool.m; sourceTree = "<group>"; };
 		5AF0A2DD1C8273760009A123 /* ComposeToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeToolBar.h; sourceTree = "<group>"; };
 		5AF0A2DE1C8273760009A123 /* ComposeToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeToolBar.m; sourceTree = "<group>"; };
+		5AF6E3791C82F89800500522 /* ComposeMuImages.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeMuImages.h; sourceTree = "<group>"; };
+		5AF6E37A1C82F89800500522 /* ComposeMuImages.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeMuImages.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -778,6 +781,8 @@
 				5A72425A1C81216E00083B77 /* ComposeTV.m */,
 				5AF0A2DD1C8273760009A123 /* ComposeToolBar.h */,
 				5AF0A2DE1C8273760009A123 /* ComposeToolBar.m */,
+				5AF6E3791C82F89800500522 /* ComposeMuImages.h */,
+				5AF6E37A1C82F89800500522 /* ComposeMuImages.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1165,6 +1170,7 @@
 				5A3E757A1BCF146000D9369F /* main.m in Sources */,
 				5ABBC5BF1C2217A1008432E7 /* UIView+WebCacheOperation.m in Sources */,
 				5A6ECA921C82EEFF003F8D04 /* AFURLSessionManager.m in Sources */,
+				5AF6E37B1C82F89800500522 /* ComposeMuImages.m in Sources */,
 				5A6ECA8D1C82EEFF003F8D04 /* AFHTTPSessionManager.m in Sources */,
 				5ABBC5A71C2217A1008432E7 /* MJArgument.m in Sources */,
 				5ABBC5B81C2217A1008432E7 /* SDWebImagePrefetcher.m in Sources */,

@@ -13,10 +13,12 @@
 #import "AccountTool.h"
 #import "MBProgressHUD+MJ.h"
 #import "ComposeToolBar.h"
+#import "ComposeMuImages.h"
 @interface ComposeViewController ()<UITextViewDelegate,ComposeToolBarDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property(nonatomic, weak)ComposeTV *composeView;
 @property(nonatomic, weak)ComposeToolBar *toolbar;
 @property(nonatomic, weak)UIImageView *imageview;
+@property(nonatomic, weak)ComposeMuImages *imagesView;
 @end
 
 @implementation ComposeViewController
@@ -34,10 +36,14 @@
 }
 
 -(void)setupImageView{
-    UIImageView *imageView = [[UIImageView alloc]init];
-    imageView.frame = CGRectMake(20, 100, 100, 100);
+    ComposeMuImages *imageView = [[ComposeMuImages alloc]init];
+    CGFloat imagesW = self.composeView.frame.size.width;
+    CGFloat imagesY = 80;
+    CGFloat imagesH = self.composeView.frame.size.height;
+    imageView.frame = CGRectMake(0, imagesY, imagesW, imagesH);
     [self.composeView addSubview:imageView];
-    self.imageview = imageView;
+//    imageView.backgroundColor = [UIColor redColor];
+    self.imagesView = imageView;
 }
 
 -(void)setupToolBar{
@@ -102,6 +108,7 @@
     //取得图片
     UIImage *image = info[UIImagePickerControllerOriginalImage];
     self.imageview.image = image;
+    [self.imagesView addImage:image];
 }
 
 -(void)setupTextView{
@@ -173,13 +180,15 @@
     params[@"status"] = self.composeView.text;
     params[@"access_token"] = [AccountTool Account].access_token;
     [mgr POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        NSData *data = UIImageJPEGRepresentation(self.imageview.image, 1.0);
-        [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/png"];
+        for (UIImage *image in self.imagesView.subviews) {
+            NSData *data = UIImageJPEGRepresentation(image, 0.5);
+            [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/png"];
+        }
     } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MBProgressHUD showSuccess:@"发送成功"];
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [MBProgressHUD showError:@"发送失败"];
-
+        
     }];
 //    [mgr POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {//发送请求之前就会调用这个block
 //        //说明这里要上传哪些文件
