@@ -69,18 +69,28 @@
     params[@"redirect_uri"] = RedirectURI;
     
     
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     mgr.responseSerializer = [AFJSONResponseSerializer serializer];
     
-    [mgr POST:@"https://api.weibo.com/oauth2/access_token" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [mgr POST:@"https://api.weibo.com/oauth2/access_token" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSLog(@"%@",responseObject);
         Account *account = [Account accountWithDict:responseObject];
         [AccountTool saveAccount:account];
         [WeiboTool chooseRootController];
         [MBProgressHUD hideHUD];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"请求失败%@",error);
         [MBProgressHUD hideHUD];
     }];
+//    [mgr POST:@"https://api.weibo.com/oauth2/access_token" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog(@"%@",responseObject);
+//        Account *account = [Account accountWithDict:responseObject];
+//        [AccountTool saveAccount:account];
+//        [WeiboTool chooseRootController];
+//        [MBProgressHUD hideHUD];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        NSLog(@"请求失败%@",error);
+//        [MBProgressHUD hideHUD];
+//    }];
 }
 @end

@@ -69,28 +69,38 @@
 
 -(void)getUserInfo{
     //创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     //封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [AccountTool Account].access_token;
     params[@"uid"] = @([AccountTool Account].uid);//不注意就错了，数字不是对象
     //发送请求
-    [mgr GET:@"https://api.weibo.com/2/users/show.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [mgr GET:@"https://api.weibo.com/2/users/show.json" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         WeiboUser *usr = [WeiboUser objectWithKeyValues:responseObject];
         [self.topBtn setTitle:usr.name forState:UIControlStateNormal];
         //保存账号昵称
         Account *account = [AccountTool Account];
         account.name = usr.name;
         [AccountTool saveAccount:account];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         
     }];
+//    [mgr GET:@"https://api.weibo.com/2/users/show.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        WeiboUser *usr = [WeiboUser objectWithKeyValues:responseObject];
+//        [self.topBtn setTitle:usr.name forState:UIControlStateNormal];
+//        //保存账号昵称
+//        Account *account = [AccountTool Account];
+//        account.name = usr.name;
+//        [AccountTool saveAccount:account];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        
+//    }];
 }
 
 -(void)headerRefresh{
 //    NSLog(@"说明了状态已经发生改变");
     //创建请求管理对象
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     //封装请求参数
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [AccountTool Account].access_token;
@@ -100,8 +110,7 @@
         //要加载ID比sinceID还大的
         params[@"since_id"] = cellframe.status.idstr;
     }
-    //发送请求
-    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *statusArray = [Status objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         NSMutableArray *statusFrameArray = [NSMutableArray array];
         for (Status *status in statusArray) {
@@ -118,18 +127,44 @@
         self.statusFrame = tempArray;
         [self.tableView reloadData];
         //转轮停止刷新
-       // [refreshControl endRefreshing];
+        // [refreshControl endRefreshing];
         [self.tableView.mj_header endRefreshing];
         //界面友好，给用户以提示，刷新的效果
         [self showNewStatusCount:statusFrameArray.count];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.tableView.mj_header endRefreshing];
     }];
+    //发送请求
+//    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSArray *statusArray = [Status objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+//        NSMutableArray *statusFrameArray = [NSMutableArray array];
+//        for (Status *status in statusArray) {
+//            CellFrame *cellFrame = [[CellFrame alloc]init];
+//            cellFrame.status = status;
+//            [statusFrameArray addObject:cellFrame];
+//        }
+//        //将最新的数据追加到旧数据的最前面
+//        //旧数据:self.statusFrames
+//        //新数据:statusFrameArray
+//        NSMutableArray *tempArray = [NSMutableArray array];
+//        [tempArray addObjectsFromArray:statusFrameArray];
+//        [tempArray addObjectsFromArray:self.statusFrame];
+//        self.statusFrame = tempArray;
+//        [self.tableView reloadData];
+//        //转轮停止刷新
+//       // [refreshControl endRefreshing];
+//        [self.tableView.mj_header endRefreshing];
+//        //界面友好，给用户以提示，刷新的效果
+//        [self showNewStatusCount:statusFrameArray.count];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [self.tableView.mj_header endRefreshing];
+//    }];
 }
 
 -(void)footerRefresh{
     //发送请求，取得之前的数据
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager  *mgr = [AFHTTPSessionManager manager];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"access_token"] = [AccountTool Account].access_token;
     params[@"count"] = @5;
@@ -138,7 +173,7 @@
         long long maxID = [cellFrame.status.idstr longLongValue] - 1;
         params[@"max_id"] = @(maxID);
     }
-    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         NSArray *statusArray = [Status objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
         NSMutableArray *statusFrameArray = [NSMutableArray array];
         for (Status *status in statusArray) {
@@ -150,9 +185,25 @@
         [self.statusFrame addObjectsFromArray:statusFrameArray];
         [self.tableView reloadData];
         [self.tableView.mj_footer endRefreshing];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [self.tableView.mj_footer endRefreshing];
     }];
+//    [mgr GET:@"https://api.weibo.com/2/statuses/friends_timeline.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSArray *statusArray = [Status objectArrayWithKeyValuesArray:responseObject[@"statuses"]];
+//        NSMutableArray *statusFrameArray = [NSMutableArray array];
+//        for (Status *status in statusArray) {
+//            CellFrame *cellframe = [[CellFrame alloc]init]; //强制类型转换
+//            cellframe.status = status;
+//            [statusFrameArray addObject:cellframe];
+//        }
+//        //添加到旧数据后面
+//        [self.statusFrame addObjectsFromArray:statusFrameArray];
+//        [self.tableView reloadData];
+//        [self.tableView.mj_footer endRefreshing];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [self.tableView.mj_footer endRefreshing];
+//    }];
 }
 
 /**

@@ -168,31 +168,46 @@
 }
 
 -(void)sendWithImage{
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"status"] = self.composeView.text;
     params[@"access_token"] = [AccountTool Account].access_token;
-    [mgr POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {//发送请求之前就会调用这个block
-        //说明这里要上传哪些文件
+    [mgr POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         NSData *data = UIImageJPEGRepresentation(self.imageview.image, 1.0);
         [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/png"];
-    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    } progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MBProgressHUD showSuccess:@"发送成功"];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [MBProgressHUD showError:@"发送失败"];
+
     }];
+//    [mgr POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {//发送请求之前就会调用这个block
+//        //说明这里要上传哪些文件
+//        NSData *data = UIImageJPEGRepresentation(self.imageview.image, 1.0);
+//        [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/png"];
+//    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        [MBProgressHUD showSuccess:@"发送成功"];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [MBProgressHUD showError:@"发送失败"];
+//    }];
 }
 
 -(void)sendWithoutImage{
-    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    AFHTTPSessionManager *mgr = [AFHTTPSessionManager manager];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"status"] = self.composeView.text;
     params[@"access_token"] = [AccountTool Account].access_token;
-    [mgr POST:@"https://api.weibo.com/2/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [mgr POST:@"https://api.weibo.com/2/statuses/update.json" parameters:params progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         [MBProgressHUD showSuccess:@"发送成功"];
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         [MBProgressHUD showError:@"发送失败"];
+
     }];
+//    [mgr POST:@"https://api.weibo.com/2/statuses/update.json" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        [MBProgressHUD showSuccess:@"发送成功"];
+//    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+//        [MBProgressHUD showError:@"发送失败"];
+//    }];
     //关闭控制器
     [self dismissViewControllerAnimated:YES completion:nil];
 }
