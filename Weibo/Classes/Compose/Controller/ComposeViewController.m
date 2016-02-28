@@ -13,9 +13,10 @@
 #import "AccountTool.h"
 #import "MBProgressHUD+MJ.h"
 #import "ComposeToolBar.h"
-@interface ComposeViewController ()<UITextViewDelegate>
+@interface ComposeViewController ()<UITextViewDelegate,ComposeToolBarDelegate,UINavigationControllerDelegate,UIImagePickerControllerDelegate>
 @property(nonatomic, weak)ComposeTV *composeView;
 @property(nonatomic, weak)ComposeToolBar *toolbar;
+@property(nonatomic, weak)UIImageView *imageview;
 @end
 
 @implementation ComposeViewController
@@ -28,10 +29,20 @@
     [self setupTextView];
     //添加toolbar
     [self setupToolBar];
+    //添加选图框
+    [self setupImageView];
+}
+
+-(void)setupImageView{
+    UIImageView *imageView = [[UIImageView alloc]init];
+    imageView.frame = CGRectMake(20, 100, 100, 100);
+    [self.composeView addSubview:imageView];
+    self.imageview = imageView;
 }
 
 -(void)setupToolBar{
     ComposeToolBar *toolbar = [[ComposeToolBar alloc]init];
+    toolbar.delegate = self;
     CGFloat toolbarH = 44;
     CGFloat toolbarW = self.view.frame.size.width;
     CGFloat toolbarX = 0;
@@ -47,6 +58,50 @@
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"发送" style:UIBarButtonItemStyleDone target:self action:@selector(send)];
     self.navigationItem.rightBarButtonItem.enabled = NO;
     self.title = @"发微博";
+}
+/**
+ *  toolbar的代理方法
+ *
+ */
+-(void)composeToolbar:(ComposeToolBar *)toolbar didClickButton:(ComposeToolBarButtonType)ComposeToolBarButtonType{
+    switch (ComposeToolBarButtonType) {
+        case ComposeToolBarButtonTypeCamera://相机
+            NSLog(@"相机");
+            [self openCamera];
+            break;
+        case ComposeToolBarButtonTypePicture://相册
+            NSLog(@"相册");
+            [self openPhoneLibrary];
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)openCamera{
+    UIImagePickerController *ipc = [[UIImagePickerController alloc]init];
+    ipc.sourceType = UIImagePickerControllerSourceTypeCamera;
+    ipc.delegate = self;
+    [self presentViewController:ipc animated:YES completion:nil];
+}
+
+-(void)openPhoneLibrary{
+    UIImagePickerController *ipc = [[UIImagePickerController alloc]init];
+    ipc.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    ipc.delegate = self;
+    [self presentViewController:ipc animated:YES completion:nil];
+}
+
+/**
+ *  图片选择控制器的代理方法
+ */
+-(void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info{
+    //NSLog(@"%@",info);
+    //销毁picker控制器
+    [picker dismissViewControllerAnimated:YES completion:nil];
+    //取得图片
+    UIImage *image = info[UIImagePickerControllerOriginalImage];
+    self.imageview.image = image;
 }
 
 -(void)setupTextView{
@@ -79,7 +134,6 @@
 }
 
 -(void)KeyboardWillHide:(NSNotification *)note{
-    CGRect keyboardF = [note.userInfo[UIKeyboardFrameEndUserInfoKey]CGRectValue];
     CGFloat duration = [note.userInfo[UIKeyboardAnimationDurationUserInfoKey]doubleValue];
     [UIView animateWithDuration:duration animations:^{
         self.toolbar.transform = CGAffineTransformIdentity;
@@ -105,6 +159,31 @@
 }
 
 -(void)send{
+    if (self.imageview.image) {
+        [self sendWithImage];
+    }else{
+        [self sendWithoutImage];
+    }
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)sendWithImage{
+    AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"status"] = self.composeView.text;
+    params[@"access_token"] = [AccountTool Account].access_token;
+    [mgr POST:@"https://upload.api.weibo.com/2/statuses/upload.json" parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {//发送请求之前就会调用这个block
+        //说明这里要上传哪些文件
+        NSData *data = UIImageJPEGRepresentation(self.imageview.image, 1.0);
+        [formData appendPartWithFileData:data name:@"pic" fileName:@"" mimeType:@"image/png"];
+    } success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        [MBProgressHUD showSuccess:@"发送成功"];
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        [MBProgressHUD showError:@"发送失败"];
+    }];
+}
+
+-(void)sendWithoutImage{
     AFHTTPRequestOperationManager *mgr = [AFHTTPRequestOperationManager manager];
     NSMutableDictionary *params = [NSMutableDictionary dictionary];
     params[@"status"] = self.composeView.text;

@@ -7,7 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+typedef enum {
+    ComposeToolBarButtonTypeCamera,
+    ComposeToolBarButtonTypePicture,
+    ComposeToolBarButtonTypeMention,
+    ComposeToolBarButtonTypeTrend,
+    ComposeToolBarButtonTypeEmotion
+}ComposeToolBarButtonType;
+@class ComposeToolBar;
+@protocol ComposeToolBarDelegate <NSObject>
 
+@optional
+-(void)composeToolbar:(ComposeToolBar *)toolbar didClickButton:(ComposeToolBarButtonType)ComposeToolBarButtonType;
+@end
 @interface ComposeToolBar : UIView
-
+@property(nonatomic, weak)id<ComposeToolBarDelegate> delegate;
 @end
